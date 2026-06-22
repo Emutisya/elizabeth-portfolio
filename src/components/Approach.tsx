@@ -43,7 +43,7 @@ export default function Approach() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="approach" className="relative overflow-hidden py-32">
+    <section id="approach" className="relative overflow-hidden py-20 md:py-32">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/2 left-0 h-px w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
       </div>

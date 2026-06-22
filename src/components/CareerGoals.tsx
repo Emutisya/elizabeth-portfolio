@@ -8,7 +8,7 @@ export default function CareerGoals() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-32">
+    <section className="relative py-20 md:py-32">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <motion.div
           ref={ref}

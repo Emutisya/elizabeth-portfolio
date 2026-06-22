@@ -8,7 +8,7 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="relative py-32">
+    <section id="contact" className="relative py-20 md:py-32">
       <div className="absolute inset-0 -z-10">
         <div className="absolute bottom-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-t from-purple-500/10 to-transparent blur-3xl" />
       </div>

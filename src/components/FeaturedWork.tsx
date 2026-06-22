@@ -14,6 +14,9 @@ const caseStudies = [
       "Mapped end-to-end workflows across engineering, operations, and stakeholder teams",
       "Aligned multiple stakeholder groups around a unified self-service strategy",
       "Defined self-service platform strategy and led product development",
+      "Authored PRDs and user stories, prioritizing the backlog against customer impact",
+      "Partnered with UX to design and validate the onboarding experience end-to-end",
+      "Instrumented telemetry and defined success metrics to measure adoption",
     ],
     impact: [
       "60% reduction in onboarding latency",
@@ -33,6 +36,9 @@ const caseStudies = [
       "Led cross-functional modernization coordinating multiple engineering teams",
       "Integrated RBAC, RSC, and token-based authorization models",
       "Introduced scalable governance practices across the ecosystem",
+      "Defined the product roadmap and drove quarterly OKRs to closure",
+      "Established a metadata schema and review process for new permissions",
+      "Drove stakeholder alignment across security, compliance, and platform teams",
     ],
     impact: [
       "100% metadata coverage across 1,200+ permissions",
@@ -51,6 +57,9 @@ const caseStudies = [
       "Program-managed migration of 158 workloads to new review process",
       "Led weekly governance reviews and dependency tracking",
       "Coordinated stakeholders and tracked execution to completion",
+      "Built the rollout plan, risk register, and communication cadence",
+      "Created self-serve documentation and onboarding to drive tool adoption",
+      "Defined KPIs and reported progress to leadership through dashboards",
     ],
     impact: [
       "100% migration completion within committed timelines",
@@ -67,7 +76,7 @@ export default function FeaturedWork() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="work" className="relative py-32">
+    <section id="work" className="relative py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           ref={ref}
