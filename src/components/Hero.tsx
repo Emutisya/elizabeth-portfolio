@@ -56,7 +56,13 @@ export default function Hero() {
             )}
           </motion.div>
 
-          <h1 className="mb-6 text-5xl leading-[1.1] font-display font-bold md:text-7xl">
+          <p className="mb-3 text-sm font-semibold tracking-widest text-purple-400 uppercase">
+            Elizabeth Waeni Mutisya
+          </p>
+          <h1
+            aria-label="Elizabeth Waeni Mutisya — Product Manager at Microsoft"
+            className="mb-6 text-5xl leading-[1.1] font-display font-bold md:text-7xl"
+          >
             Hi, I&apos;m E<span className="text-gradient">liz</span>abeth.
           </h1>
           <p className="mb-4 text-2xl leading-relaxed font-display text-[rgb(var(--muted))] md:text-3xl">
