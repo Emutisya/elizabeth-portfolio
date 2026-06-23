@@ -111,7 +111,7 @@ export default function Adventures() {
             When I&apos;m not shipping products, you&apos;ll find me on a trail, at an airport,
             or somewhere between the two. I&apos;ve crossed <span className="font-semibold text-[rgb(var(--foreground))]">12 countries</span>{" "}
             and
-            counting. Reach out for coffee and I&apos;ll tell you about navigating
+            counting. Reach out for a coffee chat and I&apos;ll tell you about navigating
             motorbikes in Vietnam, sunrise at the Pyramids, or getting lost in
             Istanbul&apos;s Grand Bazaar.
           </p>

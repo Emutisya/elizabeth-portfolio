@@ -2,7 +2,6 @@ import About from "@/components/About";
 import Adventures from "@/components/Adventures";
 import Approach from "@/components/Approach";
 import Aurora from "@/components/Aurora";
-import Bookshelf from "@/components/Bookshelf";
 import CareerGoals from "@/components/CareerGoals";
 import Contact from "@/components/Contact";
 import FeaturedWork from "@/components/FeaturedWork";
@@ -24,7 +23,6 @@ export default function Home() {
       <Approach />
       <Skills />
       <Adventures />
-      <Bookshelf />
       <CareerGoals />
       <Contact />
     </main>

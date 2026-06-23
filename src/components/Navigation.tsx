@@ -34,7 +34,7 @@ export default function Navigation() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#home" className="block translate-y-1 tracking-tight">
+        <a href="#home" className="tracking-tight">
           <Logo />
         </a>
 
