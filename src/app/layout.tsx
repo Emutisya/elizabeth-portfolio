@@ -83,39 +83,92 @@ export const metadata: Metadata = {
   },
 };
 
-const personJsonLd = {
+const PERSON_ID = `${SITE_URL}/#person`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Elizabeth Waeni Mutisya",
-  alternateName: ["Liz Mutisya", "Elizabeth Mutisya", "Waeni Mutisya", "Liz Waeni Mutisya"],
-  givenName: "Elizabeth",
-  additionalName: "Waeni",
-  familyName: "Mutisya",
-  jobTitle: "Product Manager",
-  description:
-    "Product Manager at Microsoft focused on platform governance, developer experiences, and enterprise-scale systems.",
-  url: SITE_URL,
-  image: `${SITE_URL}/opengraph-image`,
-  worksFor: {
-    "@type": "Organization",
-    name: "Microsoft",
-    url: "https://www.microsoft.com",
-  },
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Strathmore University",
-  },
-  knowsAbout: [
-    "Product Management",
-    "Platform Governance",
-    "Microsoft Graph",
-    "Developer Experience",
-    "API Strategy",
-    "Enterprise Systems",
-  ],
-  sameAs: [
-    "https://www.linkedin.com/in/elizabeth-waeni-m-11983ab4",
-    "https://github.com/Emutisya",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Elizabeth Waeni Mutisya",
+      alternateName: [
+        "Liz Mutisya",
+        "Elizabeth Mutisya",
+        "Waeni Mutisya",
+        "Liz Waeni Mutisya",
+        "Elizabeth Waeni",
+      ],
+      givenName: "Elizabeth",
+      additionalName: "Waeni",
+      familyName: "Mutisya",
+      jobTitle: "Product Manager",
+      description:
+        "Product Manager at Microsoft focused on platform governance, developer experiences, and enterprise-scale systems.",
+      url: SITE_URL,
+      mainEntityOfPage: SITE_URL,
+      image: `${SITE_URL}/opengraph-image`,
+      gender: "Female",
+      knowsLanguage: ["English"],
+      worksFor: {
+        "@type": "Organization",
+        name: "Microsoft",
+        url: "https://www.microsoft.com",
+      },
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Product Manager",
+        occupationLocation: {
+          "@type": "Organization",
+          name: "Microsoft",
+        },
+        skills: [
+          "Product Management",
+          "Platform Governance",
+          "Developer Experience",
+          "API Strategy",
+          "Enterprise Systems",
+        ],
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Strathmore University",
+      },
+      knowsAbout: [
+        "Product Management",
+        "Platform Governance",
+        "Microsoft Graph",
+        "Developer Experience",
+        "API Strategy",
+        "Enterprise Systems",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/elizabeth-waeni-m-11983ab4",
+        "https://github.com/Emutisya",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      url: SITE_URL,
+      name: "Liz Mutisya",
+      description:
+        "The personal portfolio of Elizabeth Waeni Mutisya (Liz Mutisya), Product Manager at Microsoft.",
+      inLanguage: "en-US",
+      publisher: { "@id": PERSON_ID },
+      author: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profilepage`,
+      url: SITE_URL,
+      name: "Elizabeth Waeni Mutisya — Product Manager at Microsoft",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": PERSON_ID },
+      mainEntity: { "@id": PERSON_ID },
+      inLanguage: "en-US",
+    },
   ],
 };
 
@@ -130,7 +183,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
       <body
