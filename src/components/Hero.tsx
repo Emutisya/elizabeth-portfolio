@@ -2,18 +2,19 @@
 
 import { motion } from "framer-motion";
 
-// Evenly distributed around the orbit; `mobile: true` tags also show on small screens.
+// Evenly distributed around the orbit; `mobile: true` tags also show on small
+// screens. Mobile tags occupy even indices so they spread evenly on small screens.
 const floatingTags = [
-  { label: "Shipping", color: "bg-green-400", mobile: true },
-  { label: "Scaling", color: "bg-purple-400" },
-  { label: "Roadmapping", color: "bg-indigo-400" },
-  { label: "Governing", color: "bg-cyan-400", mobile: true },
-  { label: "Stakeholder Alignment", color: "bg-orange-400" },
-  { label: "Data-Driven Decisions", color: "bg-teal-400" },
-  { label: "Designing", color: "bg-blue-400" },
   { label: "Customer Obsessed", color: "bg-amber-400", mobile: true },
-  { label: "Cross-functional Leadership", color: "bg-violet-400" },
-  { label: "Strategizing", color: "bg-rose-400" },
+  { label: "Roadmapping", color: "bg-indigo-400" },
+  { label: "Scaling", color: "bg-purple-400", mobile: true },
+  { label: "Stakeholder Alignment", color: "bg-orange-400" },
+  { label: "Data-Driven Decisions", color: "bg-teal-400", mobile: true, mobileLabel: "Data Centric" },
+  { label: "Designing", color: "bg-blue-400" },
+  { label: "Cross-functional Leadership", color: "bg-violet-400", mobile: true, mobileLabel: "Cross Functional" },
+  { label: "Shipping", color: "bg-green-400" },
+  { label: "Strategizing", color: "bg-rose-400", mobile: true, mobileLabel: "Strategic" },
+  { label: "Governing", color: "bg-cyan-400" },
 ];
 
 export default function Hero() {
@@ -192,7 +193,14 @@ export default function Hero() {
                   <span
                     className={`mr-1 inline-block h-2 w-2 rounded-full ${tag.color}`}
                   />
-                  {tag.label}
+                  {tag.mobileLabel ? (
+                    <>
+                      <span className="sm:hidden">{tag.mobileLabel}</span>
+                      <span className="hidden sm:inline">{tag.label}</span>
+                    </>
+                  ) : (
+                    tag.label
+                  )}
                 </motion.div>
               );
             })}
