@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 const skillCategories = [
   {
@@ -66,9 +67,7 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            Skills
-          </span>
+          <SectionBadge>Skills</SectionBadge>
           <h2 className="text-4xl font-display font-bold md:text-6xl">
             What I <span className="text-gradient">Bring</span>
           </h2>

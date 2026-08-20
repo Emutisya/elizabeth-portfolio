@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
+import SectionBadge from "@/components/SectionBadge";
 
 const destinations = [
   {
@@ -70,6 +71,8 @@ const volunteering = [
   },
 ];
 
+const postcardRotations = [-1, 1, -0.5, 1.5];
+
 export default function Adventures() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -92,9 +95,7 @@ export default function Adventures() {
           transition={{ duration: 0.6 }}
           className="mb-8 text-center"
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            Beyond the Screen
-          </span>
+          <SectionBadge>Beyond the Screen</SectionBadge>
           <h2 className="text-4xl font-display font-bold md:text-6xl">
             Life Beyond the <span className="text-gradient">Roadmap</span>
           </h2>
@@ -105,63 +106,84 @@ export default function Adventures() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-20 grid max-w-4xl items-center gap-6 border-y border-purple-500/20 py-8 text-left md:grid-cols-[12rem_1fr]"
         >
-          <p className="text-xl leading-relaxed text-[rgb(var(--muted))]">
-            When I&apos;m not shipping products, you&apos;ll find me on a trail, at an airport,
-            or somewhere between the two. I&apos;ve crossed <span className="font-semibold text-[rgb(var(--foreground))]">12 countries</span>{" "}
-            and
-            counting. Reach out for a coffee chat and I&apos;ll tell you about navigating
-            motorbikes in Vietnam, sunrise at the Pyramids, or getting lost in
-            Istanbul&apos;s Grand Bazaar.
-          </p>
+          <div className="-rotate-2 border border-purple-500/40 bg-purple-500/5 px-6 py-4 text-center shadow-[5px_5px_0_rgba(168,85,247,0.18)]">
+            <span className="block font-display text-7xl leading-none font-black text-gradient">
+              12
+            </span>
+            <span className="mt-2 block text-xs font-bold tracking-[0.2em] text-purple-300 uppercase">
+              Countries & counting
+            </span>
+          </div>
+          <div>
+            <p className="text-xl leading-relaxed text-[rgb(var(--muted))]">
+              When I&apos;m not shipping products, you&apos;ll find me on a trail,
+              at an airport, or somewhere between the two.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-[rgb(var(--muted))]">
+              Ask me about navigating motorbikes in Vietnam, sunrise at the
+              Pyramids, or getting lost in Istanbul&apos;s Grand Bazaar.
+            </p>
+          </div>
         </motion.div>
 
         {/* Destination Grid */}
-        <div className="mb-20 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="mx-auto mb-24 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {destinations.map((dest, index) => (
             <motion.div
               key={dest.country}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              initial={{ opacity: 0, y: 30, rotate: 0 }}
+              animate={
+                isInView
+                  ? {
+                      opacity: 1,
+                      y: 0,
+                      rotate: postcardRotations[index % postcardRotations.length],
+                    }
+                  : {}
+              }
               transition={{ duration: 0.5, delay: index * 0.06 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-2xl border border-purple-500/10 transition-all duration-500 hover:border-purple-500/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]"
+              whileHover={{ y: -8, rotate: 0 }}
+              className="group relative border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] p-1.5 pb-3 shadow-[5px_5px_0_rgba(168,85,247,0.12)] transition-all duration-300 hover:border-purple-500/40 hover:shadow-[7px_7px_0_rgba(168,85,247,0.22)]"
             >
-              {/* Image */}
-              <Image
-                src={dest.image}
-                alt={dest.country}
-                fill
-                className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.1]"
-                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
-              />
-
-              {/* Purple-pink gradient overlay that blends with theme */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a0533]/90 via-purple-900/30 to-indigo-900/20 transition-opacity duration-500 group-hover:opacity-70" />
-
-              {/* Animated glow ring on hover */}
-              <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 ring-1 ring-inset ring-purple-400/50 transition-opacity duration-500 group-hover:opacity-100" />
-
-              {/* Country name */}
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <motion.p
-                  className="text-sm font-bold tracking-wide text-white/90"
-                  animate={hoveredIndex === index ? { y: 0, opacity: 1 } : { y: 4, opacity: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {dest.country}
-                </motion.p>
-                <motion.div
-                  className="mt-1.5 h-[2px] rounded-full bg-gradient-to-r from-purple-400 to-pink-400"
-                  animate={hoveredIndex === index ? { width: "100%", opacity: 1 } : { width: "40%", opacity: 0.5 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+              <div className="relative h-44 overflow-hidden">
+                <Image
+                  src={dest.image}
+                  alt={dest.country}
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.15]"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-950/55 via-transparent to-indigo-950/10 transition-opacity duration-500 group-hover:opacity-70" />
+                <div className="absolute top-3 right-3 rotate-3 border border-white/30 bg-[rgb(var(--card))] px-2.5 py-1 font-mono text-[0.65rem] font-bold tracking-widest text-[rgb(var(--foreground))] shadow-[3px_3px_0_rgba(24,24,27,0.5)]">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
               </div>
 
-              {/* Top corner pin dot */}
-              <div className="absolute top-3 right-3 h-2 w-2 rounded-full bg-purple-400/60 shadow-[0_0_6px_rgba(168,85,247,0.6)] transition-all duration-300 group-hover:bg-purple-300 group-hover:shadow-[0_0_12px_rgba(168,85,247,0.8)]" />
+              <div className="flex items-end justify-between gap-2 px-1.5 pt-2.5">
+                <div>
+                  <span className="text-[0.6rem] font-bold tracking-[0.18em] text-purple-400 uppercase">
+                    Passport note
+                  </span>
+                  <motion.p
+                    className="mt-0.5 font-display text-base font-bold"
+                    animate={
+                      hoveredIndex === index
+                        ? { x: 3, opacity: 1 }
+                        : { x: 0, opacity: 0.9 }
+                    }
+                    transition={{ duration: 0.2 }}
+                  >
+                    {dest.country}
+                  </motion.p>
+                </div>
+                <span className="text-xl text-purple-400 transition-transform duration-300 group-hover:translate-x-1">
+                  ↗
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>

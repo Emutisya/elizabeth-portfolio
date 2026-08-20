@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 export default function CareerGoals() {
   const ref = useRef(null);
@@ -16,9 +17,7 @@ export default function CareerGoals() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            What&apos;s Next
-          </span>
+          <SectionBadge>What&apos;s Next</SectionBadge>
           <h2 className="mb-8 text-4xl font-display font-bold md:text-6xl">
             The Next <span className="text-gradient">Chapter</span>
           </h2>

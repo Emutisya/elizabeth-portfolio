@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 const caseStudies = [
   {
@@ -92,9 +93,7 @@ export default function FeaturedWork() {
           transition={{ duration: 0.6 }}
           className="mb-20 text-center"
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            My Work
-          </span>
+          <SectionBadge>My Work</SectionBadge>
           <h2 className="text-4xl font-display font-bold md:text-6xl">
             Featured <span className="text-gradient">Projects</span>
           </h2>

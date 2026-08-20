@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 type Book = {
   title: string;
@@ -109,9 +110,7 @@ export default function Bookshelf() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center md:mb-16"
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            On My Shelf
-          </span>
+          <SectionBadge>On My Shelf</SectionBadge>
           <h2 className="text-4xl font-display font-bold md:text-6xl">
             What I&apos;m <span className="text-gradient">Reading</span>
           </h2>

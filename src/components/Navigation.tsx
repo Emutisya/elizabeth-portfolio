@@ -1,16 +1,19 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Work", href: "#work" },
-  { name: "Approach", href: "#approach" },
-  { name: "Adventures", href: "#adventures" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Work", href: "/#work" },
+  { name: "Approach", href: "/#approach" },
+  { name: "Writings", href: "/#writings" },
+  { name: "Recommendations", href: "/recommendations" },
+  { name: "Adventures", href: "/#adventures" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navigation() {
@@ -34,20 +37,20 @@ export default function Navigation() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#home" className="tracking-tight">
+        <Link href="/#home" className="tracking-tight">
           <Logo />
-        </a>
+        </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               className="group relative text-sm font-medium text-[rgb(var(--muted))] transition-colors duration-200 hover:text-[rgb(var(--foreground))]"
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -87,14 +90,14 @@ export default function Navigation() {
           >
             <div className="flex flex-col gap-4 px-6 py-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileOpen(false)}
                   className="text-lg font-medium transition-colors hover:text-purple-500"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>

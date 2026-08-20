@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 const timeline = [
   {
@@ -49,9 +50,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            About
-          </span>
+          <SectionBadge>About</SectionBadge>
           <h2 className="mb-8 text-4xl font-display font-bold md:text-6xl">
             From Developer to <span className="text-gradient">Product Leader</span>
           </h2>

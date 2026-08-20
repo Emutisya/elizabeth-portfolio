@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Evenly distributed around the orbit; `mobile: true` tags also show on small
 // screens. Mobile tags occupy even indices so they spread evenly on small screens.
@@ -83,6 +84,12 @@ export default function Hero() {
             >
               View My Work
             </a>
+            <Link
+              href="/recommendations"
+              className="rounded-full border border-purple-500/50 bg-purple-500/10 px-8 py-4 font-semibold text-purple-300 transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:bg-purple-500/15"
+            >
+              View Recommendations
+            </Link>
             <a
               href="#contact"
               className="rounded-full border border-[rgb(var(--card-border))] px-8 py-4 font-semibold transition-all duration-300 hover:border-purple-500/50 hover:text-purple-400"

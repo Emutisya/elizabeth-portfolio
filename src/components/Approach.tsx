@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 const approaches = [
   {
@@ -56,9 +57,7 @@ export default function Approach() {
           transition={{ duration: 0.6 }}
           className="mb-20 text-center"
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            My Approach
-          </span>
+          <SectionBadge>My Approach</SectionBadge>
           <h2 className="text-4xl font-display font-bold md:text-6xl">
             How I <span className="text-gradient">Work</span>
           </h2>

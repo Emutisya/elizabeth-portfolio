@@ -2,11 +2,11 @@ import About from "@/components/About";
 import Adventures from "@/components/Adventures";
 import Approach from "@/components/Approach";
 import Aurora from "@/components/Aurora";
-import CareerGoals from "@/components/CareerGoals";
 import Contact from "@/components/Contact";
 import FeaturedWork from "@/components/FeaturedWork";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
+import PMWritings from "@/components/PMWritings";
 import ScrollProgress from "@/components/ScrollProgress";
 import Skills from "@/components/Skills";
 
@@ -22,8 +22,8 @@ export default function Home() {
       <FeaturedWork />
       <Approach />
       <Skills />
+      <PMWritings />
       <Adventures />
-      <CareerGoals />
       <Contact />
     </main>
   );

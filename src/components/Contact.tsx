@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionBadge from "@/components/SectionBadge";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -20,9 +21,7 @@ export default function Contact() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="mb-4 block text-sm font-semibold tracking-widest text-purple-500 uppercase">
-            Contact
-          </span>
+          <SectionBadge>Contact</SectionBadge>
           <h2 className="mb-6 text-4xl font-display font-bold md:text-6xl">
             Let&apos;s Build Something <span className="text-gradient">Meaningful</span>
           </h2>
