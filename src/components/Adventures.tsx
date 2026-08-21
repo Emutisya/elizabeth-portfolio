@@ -71,15 +71,13 @@ const volunteering = [
   },
 ];
 
-const postcardRotations = [-1, 1, -0.5, 1.5];
-
 export default function Adventures() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="adventures" className="relative overflow-hidden py-20 md:py-32">
+    <section id="adventures" className="relative overflow-hidden py-16 md:py-32">
       {/* Background blobs matching site gradient */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[120px]" />
@@ -96,7 +94,7 @@ export default function Adventures() {
           className="mb-8 text-center"
         >
           <SectionBadge>Beyond the Screen</SectionBadge>
-          <h2 className="text-4xl font-display font-bold md:text-6xl">
+          <h2 className="text-3xl font-display font-bold sm:text-4xl md:text-6xl">
             Life Beyond the <span className="text-gradient">Roadmap</span>
           </h2>
         </motion.div>
@@ -109,7 +107,7 @@ export default function Adventures() {
           className="mx-auto mb-20 grid max-w-4xl items-center gap-6 border-y border-purple-500/20 py-8 text-left md:grid-cols-[12rem_1fr]"
         >
           <div className="-rotate-2 border border-purple-500/40 bg-purple-500/5 px-6 py-4 text-center shadow-[5px_5px_0_rgba(168,85,247,0.18)]">
-            <span className="block font-display text-7xl leading-none font-black text-gradient">
+            <span className="block font-display text-6xl leading-none font-black text-gradient sm:text-7xl">
               12
             </span>
             <span className="mt-2 block text-xs font-bold tracking-[0.2em] text-purple-300 uppercase">
@@ -133,23 +131,15 @@ export default function Adventures() {
           {destinations.map((dest, index) => (
             <motion.div
               key={dest.country}
-              initial={{ opacity: 0, y: 30, rotate: 0 }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      y: 0,
-                      rotate: postcardRotations[index % postcardRotations.length],
-                    }
-                  : {}
-              }
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.06 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ y: -8, rotate: 0 }}
+              whileHover={{ y: -8 }}
               className="group relative border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] p-1.5 pb-3 shadow-[5px_5px_0_rgba(168,85,247,0.12)] transition-all duration-300 hover:border-purple-500/40 hover:shadow-[7px_7px_0_rgba(168,85,247,0.22)]"
             >
-              <div className="relative h-44 overflow-hidden">
+              <div className="relative h-40 overflow-hidden sm:h-44">
                 <Image
                   src={dest.image}
                   alt={dest.country}

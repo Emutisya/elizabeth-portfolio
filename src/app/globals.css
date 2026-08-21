@@ -28,11 +28,15 @@
   }
 
   html {
+    max-width: 100%;
+    overflow-x: hidden;
     scroll-behavior: smooth;
   }
 
   body {
     min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
     background: rgb(var(--background));
     color: rgb(var(--foreground));
     font-synthesis: none;

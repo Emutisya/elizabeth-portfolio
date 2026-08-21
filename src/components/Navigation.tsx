@@ -41,7 +41,7 @@ export default function Navigation() {
           <Logo />
         </Link>
 
-        <div className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
+        <div className="hidden items-center gap-6 lg:flex xl:gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -55,7 +55,7 @@ export default function Navigation() {
         </div>
 
         <button
-          className="p-2 md:hidden"
+          className="p-2 lg:hidden"
           onClick={() => setIsMobileOpen((open) => !open)}
           aria-label="Toggle menu"
           type="button"
@@ -86,7 +86,7 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="glass border-t border-[rgb(var(--card-border))] md:hidden"
+            className="glass border-t border-[rgb(var(--card-border))] lg:hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-4">
               {navLinks.map((link) => (

@@ -42,7 +42,7 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative py-20 md:py-32">
+    <section id="about" className="relative py-16 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           ref={ref}
@@ -51,7 +51,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <SectionBadge>About</SectionBadge>
-          <h2 className="mb-8 text-4xl font-display font-bold md:text-6xl">
+          <h2 className="mb-8 text-3xl font-display font-bold sm:text-4xl md:text-6xl">
             From Developer to <span className="text-gradient">Product Leader</span>
           </h2>
         </motion.div>

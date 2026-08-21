@@ -49,7 +49,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
       <ScrollProgress />
       <Navigation />
 
-      <div className="mx-auto max-w-5xl px-6 pt-28 pb-16 md:pt-32 md:pb-20">
+      <div className="mx-auto max-w-5xl px-4 pt-24 pb-12 sm:px-6 md:pt-32 md:pb-20">
         <Link
           href="/#writings"
           className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-purple-300 transition-colors hover:text-purple-200"
@@ -61,30 +61,30 @@ export default async function WritingPage({ params }: WritingPageProps) {
         <article className="relative mx-auto max-w-4xl">
           <div
             aria-hidden="true"
-            className="absolute top-5 -right-2 bottom-5 w-3 rounded-r-xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] opacity-70"
+            className="absolute top-5 -right-2 bottom-5 hidden w-3 rounded-r-xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] opacity-70 sm:block"
           />
           <div
             aria-hidden="true"
-            className="absolute top-9 -right-4 bottom-9 w-3 rounded-r-xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] opacity-40"
+            className="absolute top-9 -right-4 bottom-9 hidden w-3 rounded-r-xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] opacity-40 sm:block"
           />
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] shadow-[0_28px_80px_rgba(0,0,0,0.3),inset_20px_0_40px_rgba(0,0,0,0.14)]">
+          <div className="relative overflow-hidden rounded-2xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] shadow-[0_18px_50px_rgba(0,0,0,0.24)] sm:rounded-[2rem] sm:shadow-[0_28px_80px_rgba(0,0,0,0.3),inset_20px_0_40px_rgba(0,0,0,0.14)]">
             <div
               aria-hidden="true"
-              className="absolute top-0 bottom-0 left-5 w-px bg-gradient-to-b from-transparent via-purple-500/30 to-transparent sm:left-8"
+              className="absolute top-0 bottom-0 left-5 hidden w-px bg-gradient-to-b from-transparent via-purple-500/30 to-transparent sm:left-8 sm:block"
             />
             <div
               aria-hidden="true"
-              className="absolute top-0 bottom-0 left-7 w-px bg-gradient-to-b from-transparent via-[rgb(var(--card-border))] to-transparent sm:left-10"
+              className="absolute top-0 bottom-0 left-7 hidden w-px bg-gradient-to-b from-transparent via-[rgb(var(--card-border))] to-transparent sm:left-10 sm:block"
             />
 
-            <div className="relative px-9 py-9 sm:px-14 md:px-16 md:py-10 lg:px-20">
+            <div className="relative px-6 py-8 sm:px-14 sm:py-9 md:px-16 md:py-10 lg:px-20">
               <header className="text-center">
                 <p className="mb-5 font-mono text-[0.65rem] font-bold tracking-[0.28em] text-[rgb(var(--muted))] uppercase">
                   Liz&apos;s PM notebook · Field note
                 </p>
                 <SectionBadge>{writing.topic}</SectionBadge>
-                <h1 className="mx-auto max-w-3xl text-3xl leading-tight font-display font-black md:text-4xl">
+                <h1 className="mx-auto max-w-3xl break-words text-3xl leading-tight font-display font-black md:text-4xl">
                   {writing.title}
                 </h1>
                 <p className="mx-auto mt-5 max-w-2xl text-base leading-7 font-display italic text-[rgb(var(--muted))]">

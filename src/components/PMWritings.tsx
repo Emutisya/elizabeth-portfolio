@@ -3,7 +3,6 @@
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import SectionBadge from "@/components/SectionBadge";
 import { pmWritingPreviews } from "@/content/pmWritingPreviews";
 
 export default function PMWritings() {
@@ -11,7 +10,10 @@ export default function PMWritings() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="writings" className="relative overflow-hidden py-20 md:py-32">
+    <section
+      id="writings"
+      className="relative overflow-hidden pt-8 pb-20 md:pt-10 md:pb-32"
+    >
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(168,85,247,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.055)_1px,transparent_1px)] bg-[size:72px_72px]"
@@ -27,10 +29,9 @@ export default function PMWritings() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
-          <SectionBadge>Notes from the field</SectionBadge>
-          <h2 className="text-4xl font-display font-bold md:text-6xl">
+          <h2 className="text-3xl font-display font-bold sm:text-4xl md:text-6xl">
             Liz&apos;s <span className="text-gradient">PM Learnings</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-[rgb(var(--muted))]">
@@ -47,7 +48,7 @@ export default function PMWritings() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.12 }}
               whileHover={{ y: -8 }}
-              className={`group relative flex min-h-[26rem] flex-col overflow-hidden rounded-2xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] text-[rgb(var(--foreground))] shadow-[5px_5px_0_rgba(168,85,247,0.18)] transition-transform duration-300 ${writing.rotation}`}
+              className={`group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] text-[rgb(var(--foreground))] shadow-[5px_5px_0_rgba(168,85,247,0.18)] transition-transform duration-300 lg:min-h-[26rem] ${writing.rotation}`}
             >
               <Link
                 href={`/writings/${writing.slug}`}
@@ -90,7 +91,7 @@ export default function PMWritings() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl leading-tight font-display font-black">
+                  <h3 className="break-words text-xl leading-tight font-display font-black">
                     {writing.title}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-[rgb(var(--muted))]">

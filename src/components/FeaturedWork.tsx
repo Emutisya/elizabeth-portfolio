@@ -84,7 +84,10 @@ export default function FeaturedWork() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="work" className="relative py-20 md:py-32">
+    <section
+      id="work"
+      className="relative pt-20 pb-10 md:pt-32 md:pb-14"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           ref={ref}
@@ -94,7 +97,7 @@ export default function FeaturedWork() {
           className="mb-20 text-center"
         >
           <SectionBadge>My Work</SectionBadge>
-          <h2 className="text-4xl font-display font-bold md:text-6xl">
+          <h2 className="text-3xl font-display font-bold sm:text-4xl md:text-6xl">
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[rgb(var(--muted))]">

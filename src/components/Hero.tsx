@@ -8,11 +8,11 @@ import Link from "next/link";
 const floatingTags = [
   { label: "Customer Obsessed", color: "bg-amber-400", mobile: true },
   { label: "Roadmapping", color: "bg-indigo-400" },
-  { label: "Scaling", color: "bg-purple-400", mobile: true },
+  { label: "Scaling", color: "bg-purple-400" },
   { label: "Stakeholder Alignment", color: "bg-orange-400" },
   { label: "Data-Driven Decisions", color: "bg-teal-400", mobile: true, mobileLabel: "Data Centric" },
   { label: "Designing", color: "bg-blue-400" },
-  { label: "Cross-functional Leadership", color: "bg-violet-400", mobile: true, mobileLabel: "Cross Functional" },
+  { label: "Cross-functional Leadership", color: "bg-violet-400" },
   { label: "Shipping", color: "bg-green-400" },
   { label: "Strategizing", color: "bg-rose-400", mobile: true, mobileLabel: "Strategic" },
   { label: "Governing", color: "bg-cyan-400" },
@@ -33,11 +33,12 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-500/5 to-pink-500/5 blur-3xl" />
       </div>
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-2">
+      <div className="mx-auto grid min-w-0 max-w-7xl items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="min-w-0"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,11 +63,11 @@ export default function Hero() {
           </p>
           <h1
             aria-label="Elizabeth Waeni Mutisya — Product Manager at Microsoft"
-            className="mb-6 text-5xl leading-[1.1] font-display font-bold md:text-7xl"
+            className="mb-6 break-words text-4xl leading-[1.1] font-display font-bold sm:text-5xl md:text-7xl"
           >
             Hi, I&apos;m E<span className="text-gradient">liz</span>abeth.
           </h1>
-          <p className="mb-4 text-2xl leading-relaxed font-display text-[rgb(var(--muted))] md:text-3xl">
+          <p className="mb-4 text-xl leading-relaxed font-display text-[rgb(var(--muted))] sm:text-2xl md:text-3xl">
             I build products that{" "}
             <span className="text-[rgb(var(--foreground))] italic">
               untangle complexity.
@@ -77,22 +78,22 @@ export default function Hero() {
             developer experiences, and enterprise-scale systems.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 max-sm:flex-col">
             <a
               href="#work"
-              className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+              className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-center font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
             >
               View My Work
             </a>
             <Link
               href="/recommendations"
-              className="rounded-full border border-purple-500/50 bg-purple-500/10 px-8 py-4 font-semibold text-purple-300 transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:bg-purple-500/15"
+              className="rounded-full border border-purple-500/50 bg-purple-500/10 px-8 py-4 text-center font-semibold text-purple-300 transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:bg-purple-500/15"
             >
               View Recommendations
             </Link>
             <a
               href="#contact"
-              className="rounded-full border border-[rgb(var(--card-border))] px-8 py-4 font-semibold transition-all duration-300 hover:border-purple-500/50 hover:text-purple-400"
+              className="rounded-full border border-[rgb(var(--card-border))] px-8 py-4 text-center font-semibold transition-all duration-300 hover:border-purple-500/50 hover:text-purple-400"
             >
               Let&apos;s Connect
             </a>
@@ -103,7 +104,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative flex justify-center lg:justify-end"
+          className="relative flex min-w-0 justify-center lg:justify-end"
         >
           <div className="relative h-64 w-64 sm:h-80 sm:w-80 md:h-96 md:w-96">
             <div
@@ -224,7 +225,7 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
       >
         <div className="flex h-10 w-6 justify-center rounded-full border-2 border-[rgb(var(--muted))] pt-2">
           <div className="h-3 w-1 animate-bounce rounded-full bg-purple-500" />

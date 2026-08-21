@@ -86,7 +86,7 @@ export default function ColleagueRecommendations() {
           className="mb-16 text-center"
         >
           <SectionBadge>Colleague Recommendations</SectionBadge>
-          <h2 className="text-4xl font-display font-bold md:text-6xl">
+          <h2 className="break-words text-3xl font-display font-bold sm:text-4xl md:text-6xl">
             What Colleagues <span className="text-gradient">Say About Me</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[rgb(var(--muted))]">
@@ -103,7 +103,7 @@ export default function ColleagueRecommendations() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               whileHover={{ y: -4 }}
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] p-7 md:p-8"
+              className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-3xl border border-[rgb(var(--card-border))] bg-[rgb(var(--card))] p-6 sm:p-7 md:p-8"
             >
               <div
                 className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${perspective.gradient}`}
