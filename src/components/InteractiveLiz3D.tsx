@@ -13,10 +13,22 @@ const orbitPhrases = [
   { label: "SYSTEMS, SIMPLIFIED", offset: "81%", color: "#c084fc" },
 ] as const;
 
-const speechByAnimation: Record<Exclude<LizAnimation, "Idle">, string> = {
-  Bow: "Let me show you what I’ve been building.",
-  Agree: "Don’t just take my word for it.",
-  Wave: "Hi! Let’s build something meaningful.",
+const speechByAnimation: Record<
+  Exclude<LizAnimation, "Idle">,
+  { eyebrow: string; message: string }
+> = {
+  Bow: {
+    eyebrow: "Portfolio mode",
+    message: "Come see what I’ve been building.",
+  },
+  Agree: {
+    eyebrow: "Real talk",
+    message: "The people I’ve built with tell it best.",
+  },
+  Wave: {
+    eyebrow: "Hello there",
+    message: "Good ideas start with a conversation.",
+  },
 };
 
 const LizAvatarCanvas = dynamic(() => import("@/components/LizAvatarCanvas"), {
@@ -99,18 +111,28 @@ export default function InteractiveLiz3D({
         {animation !== "Idle" && (
           <motion.div
             key={animation}
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -4, scale: 0.98 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, x: 10, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 6, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="pointer-events-none absolute top-[8%] right-[1%] z-30 max-w-[10.5rem] rounded-2xl border border-purple-300/25 bg-[rgba(16,10,24,0.88)] px-3 py-2.5 text-xs leading-relaxed font-medium text-purple-50 shadow-[0_14px_45px_rgba(88,28,135,0.28)] backdrop-blur-xl sm:top-[10%] sm:right-[2%] sm:max-w-[13rem] sm:px-4 sm:py-3 sm:text-sm"
+            className="pointer-events-none absolute top-[54%] right-0 z-30 w-[10.75rem] rounded-[1.35rem] bg-gradient-to-br from-fuchsia-400/60 via-purple-500/25 to-cyan-300/50 p-px shadow-[0_18px_55px_rgba(88,28,135,0.32)] sm:top-[47%] sm:-right-[3%] sm:w-[13.5rem]"
             aria-hidden="true"
           >
-            <span className="mb-1 block text-[0.6rem] font-bold tracking-[0.18em] text-purple-300 uppercase sm:text-[0.65rem]">
-              Liz says
-            </span>
-            {speechByAnimation[animation]}
-            <span className="absolute -bottom-1.5 left-7 h-3 w-3 rotate-45 border-r border-b border-purple-300/25 bg-[rgba(16,10,24,0.88)]" />
+            <div className="relative overflow-hidden rounded-[calc(1.35rem-1px)] bg-[rgba(12,8,20,0.9)] px-3.5 py-3 backdrop-blur-xl sm:px-4 sm:py-3.5">
+              <span className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/55 to-transparent" />
+              <span className="mb-1.5 flex items-center gap-1.5 text-[0.58rem] font-bold tracking-[0.17em] text-fuchsia-200 uppercase sm:text-[0.62rem]">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fuchsia-300 opacity-60 motion-reduce:animate-none" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-fuchsia-300" />
+                </span>
+                {speechByAnimation[animation].eyebrow}
+              </span>
+              <span className="block text-xs leading-relaxed font-medium text-purple-50 sm:text-sm">
+                {speechByAnimation[animation].message}
+              </span>
+            </div>
+            <span className="absolute top-8 -left-7 h-px w-7 bg-gradient-to-l from-fuchsia-300/75 to-transparent" />
+            <span className="absolute top-[1.82rem] -left-8 h-1.5 w-1.5 rounded-full border border-fuchsia-200/70 bg-fuchsia-400 shadow-[0_0_12px_rgba(232,121,249,0.8)]" />
           </motion.div>
         )}
       </AnimatePresence>
