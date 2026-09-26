@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 
-export type LizAnimation = "Idle" | "Wave" | "Bow" | "Celebrate";
+export type LizAnimation = "Idle" | "Wave" | "Bow" | "Agree";
 
 const orbitPhrases = [
   { label: "CUSTOMER OBSESSED", offset: "2%", color: "#fbbf24" },

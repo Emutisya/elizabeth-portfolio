@@ -80,9 +80,9 @@ export default function Hero() {
             </a>
             <Link
               href="/recommendations"
-              onMouseEnter={() => setAvatarAnimation("Celebrate")}
+              onMouseEnter={() => setAvatarAnimation("Agree")}
               onMouseLeave={() => setAvatarAnimation("Idle")}
-              onFocus={() => setAvatarAnimation("Celebrate")}
+              onFocus={() => setAvatarAnimation("Agree")}
               onBlur={() => setAvatarAnimation("Idle")}
               className="rounded-full border border-purple-500/50 bg-purple-500/10 px-8 py-4 text-center font-semibold text-purple-300 transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:bg-purple-500/15"
             >

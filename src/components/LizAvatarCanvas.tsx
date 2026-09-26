@@ -6,7 +6,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import type { LizAnimation } from "@/components/InteractiveLiz3D";
 
-const MODEL_PATH = "/models/interactive-liz.glb?v=11";
+const MODEL_PATH = "/models/interactive-liz.glb?v=13";
 
 function setClampWhenFinished(action: THREE.AnimationAction, clamp: boolean) {
   action.clampWhenFinished = clamp;
