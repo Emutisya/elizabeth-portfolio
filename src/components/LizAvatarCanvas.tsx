@@ -181,7 +181,13 @@ function Avatar({
   );
 }
 
-export default function LizAvatarCanvas({ animation }: { animation: LizAnimation }) {
+export default function LizAvatarCanvas({
+  animation,
+  onTemporaryAnimationChange,
+}: {
+  animation: LizAnimation;
+  onTemporaryAnimationChange?: (animation: LizAnimation | null) => void;
+}) {
   const [temporaryAnimation, setTemporaryAnimation] = useState<LizAnimation | null>(null);
   const [replayToken, setReplayToken] = useState(0);
   const [isReady, setIsReady] = useState(false);
@@ -192,9 +198,11 @@ export default function LizAvatarCanvas({ animation }: { animation: LizAnimation
   function triggerWave() {
     if (resetTimer.current) window.clearTimeout(resetTimer.current);
     setTemporaryAnimation("Wave");
+    onTemporaryAnimationChange?.("Wave");
     setReplayToken((current) => current + 1);
     resetTimer.current = window.setTimeout(() => {
       setTemporaryAnimation(null);
+      onTemporaryAnimationChange?.(null);
       resetTimer.current = null;
     }, WAVE_RESET_DELAY_MS);
   }

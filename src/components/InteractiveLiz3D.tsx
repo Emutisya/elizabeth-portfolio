@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 
 export type LizAnimation = "Idle" | "Wave" | "Bow" | "Agree";
 
@@ -50,6 +51,8 @@ export default function InteractiveLiz3D({
   animation?: LizAnimation;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const [temporaryAnimation, setTemporaryAnimation] = useState<LizAnimation | null>(null);
+  const captionAnimation = temporaryAnimation ?? animation;
 
   return (
     <div className="relative aspect-square w-full max-w-[34rem] sm:aspect-[0.94]">
@@ -109,11 +112,14 @@ export default function InteractiveLiz3D({
         </motion.svg>
       </div>
       <div className="pointer-events-none absolute bottom-[1.5%] left-1/2 z-[5] h-[4.5%] w-[36%] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(ellipse,rgba(0,0,0,0.88)_0%,rgba(88,28,135,0.42)_48%,transparent_76%)] blur-sm" />
-      <LizAvatarCanvas animation={animation} />
+      <LizAvatarCanvas
+        animation={animation}
+        onTemporaryAnimationChange={setTemporaryAnimation}
+      />
       <AnimatePresence mode="wait">
-        {animation !== "Idle" && (
+        {captionAnimation !== "Idle" && (
           <motion.div
-            key={animation}
+            key={captionAnimation}
             initial={prefersReducedMotion ? false : { opacity: 0, x: 14 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 8 }}
@@ -129,13 +135,13 @@ export default function InteractiveLiz3D({
                 className="h-px w-7 origin-right bg-gradient-to-r from-transparent to-fuchsia-300"
               />
               <span className="text-[0.56rem] font-bold tracking-[0.2em] text-fuchsia-200 uppercase sm:text-[0.62rem]">
-                {speechByAnimation[animation].eyebrow}
+                {speechByAnimation[captionAnimation].eyebrow}
               </span>
             </div>
             <div className="font-display text-lg leading-[1.05] font-semibold tracking-[-0.03em] text-white drop-shadow-[0_5px_18px_rgba(88,28,135,0.8)] sm:text-[1.65rem]">
-              {speechByAnimation[animation].message.split(" ").map((word, index) => (
+              {speechByAnimation[captionAnimation].message.split(" ").map((word, index) => (
                 <motion.span
-                  key={`${animation}-${word}`}
+                  key={`${captionAnimation}-${word}`}
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 9, filter: "blur(5px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ delay: index * 0.07, duration: 0.3, ease: "easeOut" }}
@@ -151,7 +157,7 @@ export default function InteractiveLiz3D({
               transition={{ delay: 0.28, duration: 0.3 }}
               className="mt-1.5 block text-[0.58rem] font-medium tracking-[0.16em] text-cyan-200/75 uppercase sm:text-[0.65rem]"
             >
-              {speechByAnimation[animation].accent}
+              {speechByAnimation[captionAnimation].accent}
             </motion.span>
           </motion.div>
         )}
