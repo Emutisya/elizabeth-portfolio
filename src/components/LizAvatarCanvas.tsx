@@ -24,7 +24,7 @@ function Avatar({
   const group = useRef<THREE.Group>(null);
   const pointerTarget = useRef({ x: 0, y: 0 });
   const { scene, animations } = useGLTF(MODEL_PATH);
-  const { actions } = useAnimations(animations, group);
+  const { actions, mixer } = useAnimations(animations, group);
   const head = scene.getObjectByName("mixamorig:Head") as THREE.Bone | undefined;
   const upperSpine = scene.getObjectByName("mixamorig:Spine2") as THREE.Bone | undefined;
   const idleMotion = useRef({
@@ -64,10 +64,25 @@ function Avatar({
     }
     action.play();
 
+    function returnToIdle(event: THREE.Event & { action?: THREE.AnimationAction }) {
+      if (animation === "Idle" || event.action !== action) return;
+      const idle = actions.Idle;
+      if (!idle) return;
+
+      setClampWhenFinished(idle, false);
+      idle.reset();
+      idle.setLoop(THREE.LoopRepeat, Infinity);
+      idle.setEffectiveTimeScale(1);
+      idle.play();
+      action.crossFadeTo(idle, 0.18, false);
+    }
+
+    mixer.addEventListener("finished", returnToIdle);
     return () => {
+      mixer.removeEventListener("finished", returnToIdle);
       action.fadeOut(0.08);
     };
-  }, [actions, animation, replayToken]);
+  }, [actions, animation, mixer, replayToken]);
 
   useFrame((_, delta) => {
     if (!group.current) return;
