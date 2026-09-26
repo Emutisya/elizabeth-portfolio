@@ -8,8 +8,8 @@ import type { LizAnimation } from "@/components/InteractiveLiz3D";
 
 const MODEL_PATH = "/models/interactive-liz.glb?v=13";
 const DRACO_PATH = "/draco/";
-const WAVE_TIME_SCALE = 1.15;
-const WAVE_RESET_DELAY_MS = 5000;
+const WAVE_TIME_SCALE = 0.95;
+const WAVE_RESET_DELAY_MS = 5900;
 
 function setClampWhenFinished(action: THREE.AnimationAction, clamp: boolean) {
   action.clampWhenFinished = clamp;
