@@ -40,6 +40,12 @@ export default function InteractiveLiz3D({
       <div
         className="pointer-events-none absolute inset-[1%] z-0 hidden sm:block"
         aria-hidden="true"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, black 0%, black 68%, transparent 89%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 0%, black 68%, transparent 89%)",
+        }}
       >
         <motion.svg
           viewBox="0 0 520 520"
@@ -81,10 +87,8 @@ export default function InteractiveLiz3D({
           ))}
         </motion.svg>
       </div>
-      <div className="pointer-events-none absolute inset-x-[3%] bottom-[1%] z-[1] h-[20%] bg-gradient-to-t from-black via-black/85 to-transparent" />
       <div className="pointer-events-none absolute bottom-[1.5%] left-1/2 z-[5] h-[4.5%] w-[36%] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(ellipse,rgba(0,0,0,0.88)_0%,rgba(88,28,135,0.42)_48%,transparent_76%)] blur-sm" />
       <LizAvatarCanvas animation={animation} />
-      <div className="pointer-events-none absolute inset-[9%] z-[15] hidden rounded-full border border-transparent border-b-purple-400/25 shadow-[0_18px_36px_-24px_rgba(168,85,247,0.8)] sm:block" />
       <div className="pointer-events-none absolute right-[20%] bottom-[0.5%] left-[20%] z-[15] hidden h-[7%] rounded-[100%] bg-[radial-gradient(ellipse,rgba(126,34,206,0.2)_0%,rgba(88,28,135,0.08)_45%,transparent_72%)] blur-xl sm:block" />
       <div className="pointer-events-none absolute right-[2%] bottom-[7%] z-20 rounded-full border border-purple-400/25 bg-black/55 px-3 py-1.5 text-[0.65rem] font-semibold tracking-[0.14em] text-purple-200 uppercase backdrop-blur-md">
         Tap to say hello
