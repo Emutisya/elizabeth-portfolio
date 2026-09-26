@@ -8,6 +8,8 @@ import type { LizAnimation } from "@/components/InteractiveLiz3D";
 
 const MODEL_PATH = "/models/interactive-liz.glb?v=13";
 const DRACO_PATH = "/draco/";
+const WAVE_TIME_SCALE = 1.15;
+const WAVE_RESET_DELAY_MS = 5000;
 
 function setClampWhenFinished(action: THREE.AnimationAction, clamp: boolean) {
   action.clampWhenFinished = clamp;
@@ -64,7 +66,7 @@ function Avatar({
     } else {
       setClampWhenFinished(action, true);
       action.setLoop(THREE.LoopOnce, 1);
-      action.setEffectiveTimeScale(1.65);
+      action.setEffectiveTimeScale(animation === "Wave" ? WAVE_TIME_SCALE : 1.65);
     }
     action.play();
 
@@ -194,7 +196,7 @@ export default function LizAvatarCanvas({ animation }: { animation: LizAnimation
     resetTimer.current = window.setTimeout(() => {
       setTemporaryAnimation(null);
       resetTimer.current = null;
-    }, 3100);
+    }, WAVE_RESET_DELAY_MS);
   }
 
   return (
