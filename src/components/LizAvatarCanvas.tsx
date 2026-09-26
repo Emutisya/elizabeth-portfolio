@@ -2,7 +2,7 @@
 
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { Canvas, type ThreeEvent, useFrame } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import type { LizAnimation } from "@/components/InteractiveLiz3D";
 
@@ -17,10 +17,12 @@ function Avatar({
   animation,
   replayToken,
   onWave,
+  onReady,
 }: {
   animation: LizAnimation;
   replayToken: number;
   onWave: () => void;
+  onReady: () => void;
 }) {
   const group = useRef<THREE.Group>(null);
   const pointerTarget = useRef({ x: 0, y: 0 });
@@ -47,7 +49,8 @@ function Avatar({
   useEffect(() => {
     const helper = scene.getObjectByName("Icosphere");
     if (helper) helper.visible = false;
-  }, [scene]);
+    onReady();
+  }, [onReady, scene]);
 
   useEffect(() => {
     const action = actions[animation];
@@ -179,8 +182,10 @@ function Avatar({
 export default function LizAvatarCanvas({ animation }: { animation: LizAnimation }) {
   const [temporaryAnimation, setTemporaryAnimation] = useState<LizAnimation | null>(null);
   const [replayToken, setReplayToken] = useState(0);
+  const [isReady, setIsReady] = useState(false);
   const resetTimer = useRef<number | null>(null);
   const activeAnimation = temporaryAnimation ?? animation;
+  const handleReady = useCallback(() => setIsReady(true), []);
 
   function triggerWave() {
     if (resetTimer.current) window.clearTimeout(resetTimer.current);
@@ -193,31 +198,38 @@ export default function LizAvatarCanvas({ animation }: { animation: LizAnimation
   }
 
   return (
-    <Canvas
-      dpr={[1, 1.75]}
-      camera={{ fov: 24, position: [0, 0, 4.2] }}
-      gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
-      fallback={
-        <div className="flex h-full items-center justify-center text-sm text-[rgb(var(--muted))]">
-          Interactive avatar unavailable in this browser.
-        </div>
-      }
-      className="relative z-10 cursor-pointer"
-      aria-label="Interactive 3D avatar of Elizabeth Mutisya"
-      onPointerMissed={triggerWave}
+    <div
+      className={`absolute inset-0 z-10 transition-[opacity,transform] duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none ${
+        isReady ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-[0.985] opacity-0"
+      }`}
     >
-      <ambientLight intensity={1.7} />
-      <directionalLight position={[-4, 7, 5]} intensity={3.2} color="#fff1e6" />
-      <directionalLight position={[5, 4, -2]} intensity={2.4} color="#a855f7" />
-      <pointLight position={[0, 2, 4]} intensity={1.8} color="#f5d0fe" />
-      <Suspense fallback={null}>
-        <Avatar
-          animation={activeAnimation}
-          replayToken={replayToken}
-          onWave={triggerWave}
-        />
-      </Suspense>
-    </Canvas>
+      <Canvas
+        dpr={[1, 1.75]}
+        camera={{ fov: 24, position: [0, 0, 4.2] }}
+        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        fallback={
+          <div className="flex h-full items-center justify-center text-sm text-[rgb(var(--muted))]">
+            Interactive avatar unavailable in this browser.
+          </div>
+        }
+        className="cursor-pointer"
+        aria-label="Interactive 3D avatar of Elizabeth Mutisya"
+        onPointerMissed={triggerWave}
+      >
+        <ambientLight intensity={1.7} />
+        <directionalLight position={[-4, 7, 5]} intensity={3.2} color="#fff1e6" />
+        <directionalLight position={[5, 4, -2]} intensity={2.4} color="#a855f7" />
+        <pointLight position={[0, 2, 4]} intensity={1.8} color="#f5d0fe" />
+        <Suspense fallback={null}>
+          <Avatar
+            animation={activeAnimation}
+            replayToken={replayToken}
+            onWave={triggerWave}
+            onReady={handleReady}
+          />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
 

@@ -81,6 +81,7 @@ export default function InteractiveLiz3D({
           ))}
         </motion.svg>
       </div>
+      <div className="pointer-events-none absolute inset-x-[3%] bottom-[1%] z-[1] h-[20%] bg-gradient-to-t from-black via-black/85 to-transparent" />
       <div className="pointer-events-none absolute bottom-[1.5%] left-1/2 z-[5] h-[4.5%] w-[36%] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(ellipse,rgba(0,0,0,0.88)_0%,rgba(88,28,135,0.42)_48%,transparent_76%)] blur-sm" />
       <LizAvatarCanvas animation={animation} />
       <div className="pointer-events-none absolute inset-[9%] z-[15] hidden rounded-full border border-transparent border-b-purple-400/25 shadow-[0_18px_36px_-24px_rgba(168,85,247,0.8)] sm:block" />
