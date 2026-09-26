@@ -181,13 +181,6 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link
-          rel="preload"
-          href="/models/interactive-liz.glb?v=13"
-          as="fetch"
-          type="model/gltf-binary"
-          crossOrigin="anonymous"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

@@ -7,6 +7,7 @@ import * as THREE from "three";
 import type { LizAnimation } from "@/components/InteractiveLiz3D";
 
 const MODEL_PATH = "/models/interactive-liz.glb?v=13";
+const DRACO_PATH = "/draco/";
 
 function setClampWhenFinished(action: THREE.AnimationAction, clamp: boolean) {
   action.clampWhenFinished = clamp;
@@ -23,7 +24,7 @@ function Avatar({
 }) {
   const group = useRef<THREE.Group>(null);
   const pointerTarget = useRef({ x: 0, y: 0 });
-  const { scene, animations } = useGLTF(MODEL_PATH);
+  const { scene, animations } = useGLTF(MODEL_PATH, { draco: DRACO_PATH });
   const { actions, mixer } = useAnimations(animations, group);
   const head = scene.getObjectByName("mixamorig:Head") as THREE.Bone | undefined;
   const upperSpine = scene.getObjectByName("mixamorig:Spine2") as THREE.Bone | undefined;
@@ -220,4 +221,4 @@ export default function LizAvatarCanvas({ animation }: { animation: LizAnimation
   );
 }
 
-useGLTF.preload(MODEL_PATH);
+useGLTF.preload(MODEL_PATH, { draco: DRACO_PATH });
