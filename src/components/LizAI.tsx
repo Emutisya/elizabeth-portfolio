@@ -106,6 +106,7 @@ export default function LizAI() {
   const [isListening, setIsListening] = useState(false);
   const [teaser, setTeaser] = useState<string | null>(null);
   const [voiceSupported, setVoiceSupported] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const responseTimer = useRef<number | null>(null);
@@ -148,6 +149,24 @@ export default function LizAI() {
       behavior: reduceMotion ? "auto" : "smooth",
     });
   }, [isOpen, isThinking, messages, reduceMotion]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function closeOnOutsidePointer(event: PointerEvent) {
+      if (
+        panelRef.current &&
+        event.target instanceof Node &&
+        !panelRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", closeOnOutsidePointer);
+    return () =>
+      document.removeEventListener("pointerdown", closeOnOutsidePointer);
+  }, [isOpen]);
 
   useEffect(() => {
     function openFromHash() {
@@ -315,6 +334,7 @@ export default function LizAI() {
       <AnimatePresence>
         {isOpen && (
           <motion.section
+            ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-label="Ask Liz AI about this portfolio"
