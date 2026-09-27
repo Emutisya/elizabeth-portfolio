@@ -194,6 +194,17 @@ export default function LizAI() {
     };
   }, [isOpen, pathname]);
 
+  useEffect(() => {
+    if (!teaser || isOpen) return;
+
+    const timer = window.setTimeout(() => {
+      setTeaser(null);
+      window.sessionStorage.setItem("liz-ai-teaser-seen", "true");
+    }, 7000);
+
+    return () => window.clearTimeout(timer);
+  }, [isOpen, teaser]);
+
   useEffect(
     () => () => {
       if (responseTimer.current) window.clearTimeout(responseTimer.current);
