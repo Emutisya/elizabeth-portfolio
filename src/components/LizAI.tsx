@@ -580,6 +580,11 @@ export default function LizAI() {
             )}
           </AnimatePresence>
         </span>
+        {!isOpen && (
+          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full border border-fuchsia-200/25 bg-[#100918]/95 px-2 py-0.5 text-[0.48rem] font-black tracking-[0.14em] text-fuchsia-100 shadow-lg backdrop-blur-sm">
+            AI
+          </span>
+        )}
         <span className="pointer-events-none absolute top-1/2 right-[calc(100%+0.75rem)] hidden -translate-y-1/2 whitespace-nowrap rounded-full border border-purple-300/15 bg-[#100918]/95 px-3 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-purple-100 uppercase opacity-0 shadow-xl backdrop-blur-xl transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 sm:block">
           Ask Liz AI
         </span>
