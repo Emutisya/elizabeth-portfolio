@@ -29,9 +29,9 @@ const speechByAnimation: Record<
     accent: "proven in partnership",
   },
   Wave: {
-    eyebrow: "Open channel",
-    message: "Let’s make something.",
-    accent: "say hello",
+    eyebrow: "Hi, I’m Liz",
+    message: "Welcome to my world.",
+    accent: "so glad you’re here",
   },
 };
 

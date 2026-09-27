@@ -456,19 +456,18 @@ export default function LizAI() {
                   Portfolio intelligence
                 </p>
               </div>
-              {messages.length > 1 && (
-                <button
-                  type="button"
-                  onClick={clearConversation}
-                  className="relative rounded-full p-2 text-purple-200/45 transition hover:bg-white/5 hover:text-purple-100"
-                  aria-label="Clear conversation"
-                  title="Clear conversation"
-                >
-                  <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5" />
-                  </svg>
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={clearConversation}
+                className="relative inline-flex items-center gap-1.5 rounded-full border border-purple-300/10 px-2.5 py-2 text-[0.58rem] font-bold tracking-[0.08em] text-purple-200/60 uppercase transition hover:border-purple-300/20 hover:bg-white/5 hover:text-purple-100"
+                aria-label="Restart the conversation"
+                title="Restart the conversation"
+              >
+                <svg aria-hidden="true" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M20 11a8 8 0 10-2.3 5.7M20 4v7h-7" />
+                </svg>
+                Restart
+              </button>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
