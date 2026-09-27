@@ -68,6 +68,37 @@ const contextualTeasers: Record<string, string> = {
   recommendations: "I can summarize what colleagues consistently value about Liz.",
 };
 
+const starterPromptDetails = [
+  {
+    question: lizAIStarterPrompts[0],
+    label: "Impact",
+    detail: "Outcomes & scale",
+    color: "from-fuchsia-400 to-pink-500",
+    path: "M4 16l5-5 4 4 7-8M16 7h4v4",
+  },
+  {
+    question: lizAIStarterPrompts[1],
+    label: "Signal",
+    detail: "Strengths & craft",
+    color: "from-violet-400 to-indigo-400",
+    path: "M12 3l2.2 5.2L20 10l-4.4 3.6L17 20l-5-3-5 3 1.4-6.4L4 10l5.8-1.8L12 3z",
+  },
+  {
+    question: lizAIStarterPrompts[2],
+    label: "Thinking",
+    detail: "Ideas & decisions",
+    color: "from-cyan-300 to-teal-400",
+    path: "M9 18h6M10 21h4M8.2 14.5A6 6 0 1115.8 14.5c-.9.7-1.3 1.4-1.3 2.5h-5c0-1.1-.4-1.8-1.3-2.5z",
+  },
+  {
+    question: lizAIStarterPrompts[3],
+    label: "Trust",
+    detail: "Why Liz",
+    color: "from-amber-300 to-orange-400",
+    path: "M12 21s8-4.5 8-11V5l-8-2-8 2v5c0 6.5 8 11 8 11zm-3-10 2 2 4-4",
+  },
+] as const;
+
 function createMessageId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -335,187 +366,338 @@ export default function LizAI() {
         {isOpen && (
           <motion.section
             ref={panelRef}
+            id="liz-ai-panel"
             role="dialog"
-            aria-modal="true"
             aria-label="Ask Liz AI about this portfolio"
-            initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.97 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 22, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            transition={{ duration: 0.24, ease: "easeOut" }}
+            exit={{ opacity: 0, y: 14, scale: 0.975 }}
+            transition={{ type: "spring", stiffness: 360, damping: 30 }}
             onKeyDown={(event) => {
               if (event.key === "Escape") setIsOpen(false);
             }}
-            className="fixed right-3 bottom-3 z-[80] flex h-[min(42rem,calc(100dvh-1.5rem))] w-[min(25rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-[1.75rem] border border-purple-300/20 bg-[rgba(10,7,16,0.96)] shadow-[0_28px_100px_rgba(0,0,0,0.65),0_0_60px_rgba(126,34,206,0.15)] backdrop-blur-2xl sm:right-6 sm:bottom-6"
+            className="fixed right-3 bottom-3 z-[80] flex h-[min(39rem,calc(100dvh-1.5rem))] w-[min(24rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-[1.8rem] border border-white/[0.11] bg-[rgba(8,5,14,0.965)] shadow-[0_30px_100px_rgba(0,0,0,0.72),0_0_80px_rgba(126,34,206,0.16)] backdrop-blur-2xl sm:right-6 sm:bottom-6"
           >
-            <div className="relative flex items-center gap-3 overflow-hidden border-b border-white/10 px-4 py-3.5">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(168,85,247,0.24),transparent_45%)]" />
-              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl border border-fuchsia-300/30 bg-purple-950/80">
-                <Image
-                  src="/liz-ai.png"
-                  alt=""
-                  fill
-                  priority
-                  className="scale-110 object-cover object-top"
-                  sizes="48px"
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_4%,rgba(217,70,239,0.13),transparent_28%),radial-gradient(circle_at_88%_22%,rgba(34,211,238,0.07),transparent_24%)]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:28px_28px]"
+            />
+
+            <header className="relative flex items-center gap-3 border-b border-white/[0.08] px-4 py-3.5">
+              <div className="relative h-11 w-11 shrink-0">
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute -inset-1 rounded-[1.05rem] border border-dashed border-fuchsia-300/35"
+                  animate={reduceMotion ? undefined : { rotate: 360 }}
+                  transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
                 />
+                <div className="relative h-full w-full overflow-hidden rounded-[0.9rem] border border-fuchsia-300/25 bg-purple-950/80">
+                  <Image
+                    src="/liz-ai.png"
+                    alt=""
+                    fill
+                    priority
+                    className="scale-110 object-cover object-top"
+                    sizes="44px"
+                  />
+                </div>
+                <span className="absolute -right-1 -bottom-1 h-2.5 w-2.5 rounded-full border-2 border-[#0b0711] bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.8)]" />
               </div>
               <div className="relative min-w-0 flex-1">
-                <h2 className="font-display text-lg font-bold">Liz AI</h2>
-                <p className="truncate text-xs text-purple-200/65">
-                  Your guide to Liz’s work and world
+                <div className="flex items-baseline gap-2">
+                  <h2 className="font-display text-lg font-bold tracking-tight">
+                    Liz AI
+                  </h2>
+                  <span className="text-[0.5rem] font-bold tracking-[0.18em] text-fuchsia-300 uppercase">
+                    Beta
+                  </span>
+                </div>
+                <p className="truncate text-[0.64rem] font-medium tracking-[0.08em] text-purple-200/60 uppercase">
+                  Portfolio intelligence
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={clearConversation}
-                className="relative rounded-full p-2 text-purple-200/60 transition hover:bg-white/5 hover:text-purple-100"
-                aria-label="Clear conversation"
-                title="Clear conversation"
-              >
-                <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5" />
-                </svg>
-              </button>
+              {messages.length > 1 && (
+                <button
+                  type="button"
+                  onClick={clearConversation}
+                  className="relative rounded-full p-2 text-purple-200/45 transition hover:bg-white/5 hover:text-purple-100"
+                  aria-label="Clear conversation"
+                  title="Clear conversation"
+                >
+                  <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5" />
+                  </svg>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="relative rounded-full p-2 text-purple-200/60 transition hover:bg-white/5 hover:text-purple-100"
+                className="relative rounded-full p-2 text-purple-200/45 transition hover:bg-white/5 hover:text-purple-100"
                 aria-label="Close Liz AI"
               >
                 <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <path strokeLinecap="round" d="M6 6l12 12M18 6 6 18" />
                 </svg>
               </button>
-            </div>
+            </header>
 
             <div
               ref={scrollRef}
               aria-live="polite"
               className="min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-5 [scrollbar-color:rgba(168,85,247,0.35)_transparent]"
             >
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={
-                      message.role === "user"
-                        ? "max-w-[84%] rounded-2xl rounded-br-md bg-gradient-to-br from-purple-600 to-fuchsia-600 px-4 py-3 text-sm leading-relaxed text-white shadow-lg shadow-purple-950/20"
-                        : "max-w-[92%]"
-                    }
-                  >
-                    {message.role === "assistant" && (
-                      <div className="mb-2 flex items-center gap-2 text-[0.58rem] font-bold tracking-[0.16em] text-fuchsia-300 uppercase">
-                        <span className="h-px w-5 bg-gradient-to-r from-fuchsia-400 to-transparent" />
-                        Liz AI
+              {messages.map((message) => {
+                if (message.id === "welcome" && messages.length > 1) return null;
+
+                if (message.id === "welcome") {
+                  return (
+                    <motion.div
+                      key={message.id}
+                      initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="relative overflow-hidden rounded-[1.5rem] border border-white/[0.09] bg-white/[0.025] p-4"
+                    >
+                      <div
+                        aria-hidden="true"
+                        className="absolute -top-20 -right-16 h-44 w-44 rounded-full bg-fuchsia-500/15 blur-3xl"
+                      />
+                      <div className="relative">
+                        <div className="mb-4 flex items-center justify-between">
+                          <span className="flex items-center gap-2 text-[0.56rem] font-bold tracking-[0.18em] text-cyan-200/80 uppercase">
+                            <span className="relative flex h-1.5 w-1.5">
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-50 motion-reduce:animate-none" />
+                              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                            </span>
+                            Portfolio signal online
+                          </span>
+                          <span className="font-mono text-[0.52rem] text-purple-200/35">
+                            LIZ.OS / 01
+                          </span>
+                        </div>
+                        <h3 className="max-w-[15rem] font-display text-[1.75rem] leading-[1.02] font-semibold tracking-[-0.04em]">
+                          Ask beyond
+                          <span className="block bg-gradient-to-r from-fuchsia-300 via-purple-300 to-cyan-200 bg-clip-text text-transparent">
+                            the résumé.
+                          </span>
+                        </h3>
+                        <p className="mt-3 max-w-[19rem] text-xs leading-5 text-purple-100/55">
+                          Explore the decisions, impact, ideas, and human signal
+                          behind Liz’s work.
+                        </p>
+
+                        <div className="mt-5 grid grid-cols-2 gap-2">
+                          {starterPromptDetails.map((prompt, index) => (
+                            <motion.button
+                              type="button"
+                              key={prompt.question}
+                              onClick={() => ask(prompt.question)}
+                              aria-label={prompt.question}
+                              initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.08 + index * 0.055 }}
+                              className="group relative min-h-[5rem] overflow-hidden rounded-2xl border border-white/[0.08] bg-black/20 p-3 text-left transition hover:-translate-y-0.5 hover:border-purple-300/25 hover:bg-white/[0.045]"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className={`absolute inset-x-3 top-0 h-px bg-gradient-to-r ${prompt.color}`}
+                              />
+                              <span className="flex items-start justify-between">
+                                <span
+                                  className={`flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${prompt.color} text-[#0a0710] shadow-lg`}
+                                >
+                                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d={prompt.path} />
+                                  </svg>
+                                </span>
+                                <span className="text-purple-200/25 transition group-hover:translate-x-0.5 group-hover:text-purple-100/70">
+                                  ↗
+                                </span>
+                              </span>
+                              <span className="mt-2 block text-xs font-bold text-purple-50">
+                                {prompt.label}
+                              </span>
+                              <span className="mt-0.5 block text-[0.6rem] text-purple-100/60">
+                                {prompt.detail}
+                              </span>
+                            </motion.button>
+                          ))}
+                        </div>
                       </div>
-                    )}
-                    <p
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <div
+                    key={message.id}
+                    className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                  >
+                    <div
                       className={
-                        message.role === "assistant"
-                          ? "text-sm leading-6 text-purple-50/90"
-                          : ""
+                        message.role === "user"
+                          ? "max-w-[84%] rounded-[1.25rem] rounded-br-md bg-gradient-to-br from-purple-600 to-fuchsia-600 px-4 py-3 text-sm leading-relaxed text-white shadow-[0_12px_30px_rgba(88,28,135,0.24)]"
+                          : "max-w-[94%] rounded-[1.35rem] border border-white/[0.07] bg-white/[0.025] p-4"
                       }
                     >
-                      <TypingText text={message.text} animate={message.animate} />
-                    </p>
-                    {message.sources?.length ? (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {message.sources.map((source) => {
-                          const external = source.href.startsWith("http");
-                          return (
-                            <Link
-                              key={`${message.id}-${source.href}`}
-                              href={source.href}
-                              target={external ? "_blank" : undefined}
-                              rel={external ? "noopener noreferrer" : undefined}
-                              onClick={() => setIsOpen(false)}
-                              className="inline-flex items-center gap-1.5 rounded-full border border-purple-300/15 bg-purple-400/[0.07] px-3 py-1.5 text-[0.68rem] font-semibold text-purple-200 transition hover:border-fuchsia-300/35 hover:bg-purple-400/15"
+                      {message.role === "assistant" && (
+                        <div className="mb-2.5 flex items-center gap-2 text-[0.56rem] font-bold tracking-[0.16em] text-fuchsia-300 uppercase">
+                          <span className="h-1.5 w-1.5 rounded-full bg-fuchsia-300 shadow-[0_0_8px_rgba(232,121,249,0.75)]" />
+                          Liz AI
+                        </div>
+                      )}
+                      <p
+                        className={
+                          message.role === "assistant"
+                            ? "text-sm leading-6 text-purple-50/85"
+                            : ""
+                        }
+                      >
+                        <TypingText text={message.text} animate={message.animate} />
+                      </p>
+                      {message.sources?.length ? (
+                        <div className="mt-4 grid gap-2">
+                          {message.sources.map((source) => {
+                            const external = source.href.startsWith("http");
+                            return (
+                              <Link
+                                key={`${message.id}-${source.href}`}
+                                href={source.href}
+                                target={external ? "_blank" : undefined}
+                                rel={external ? "noopener noreferrer" : undefined}
+                                onClick={() => setIsOpen(false)}
+                                className="group flex items-center justify-between rounded-xl border border-purple-300/10 bg-purple-400/[0.055] px-3 py-2 text-[0.68rem] font-semibold text-purple-100/75 transition hover:border-cyan-300/25 hover:bg-purple-400/10 hover:text-white"
+                              >
+                                <span className="flex items-center gap-2">
+                                  <span className="h-1 w-1 rounded-full bg-cyan-300" />
+                                  {source.label}
+                                </span>
+                                <span aria-hidden="true" className="transition group-hover:translate-x-0.5">
+                                  ↗
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+                      {message.role === "assistant" &&
+                      message.id === messages.at(-1)?.id &&
+                      message.suggestions?.length ? (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {message.suggestions.slice(0, 3).map((suggestion) => (
+                            <button
+                              type="button"
+                              key={suggestion}
+                              onClick={() => ask(suggestion)}
+                              className="rounded-full border border-white/[0.08] px-3 py-2 text-left text-[0.68rem] leading-snug text-purple-100/65 transition hover:border-fuchsia-300/25 hover:bg-white/[0.03] hover:text-white"
                             >
-                              {source.label}
-                              <span aria-hidden="true">↗</span>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    ) : null}
-                    {message.role === "assistant" &&
-                    message.id === messages.at(-1)?.id &&
-                    message.suggestions?.length ? (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {message.suggestions.slice(0, 3).map((suggestion) => (
-                          <button
-                            type="button"
-                            key={suggestion}
-                            onClick={() => ask(suggestion)}
-                            className="rounded-full border border-white/10 px-3 py-1.5 text-left text-[0.68rem] leading-snug text-purple-100/75 transition hover:border-purple-400/40 hover:text-white"
-                          >
-                            {suggestion}
-                          </button>
-                        ))}
-                      </div>
-                    ) : null}
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
               {isThinking && (
-                <div className="flex items-center gap-2 text-xs text-purple-200/60" role="status">
-                  <span className="flex gap-1">
-                    {[0, 1, 2].map((dot) => (
+                <div
+                  className="inline-flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] px-3.5 py-3 text-xs text-purple-100/55"
+                  role="status"
+                >
+                  <span className="flex h-7 items-center gap-0.5">
+                    {[0, 1, 2, 3].map((bar) => (
                       <motion.span
-                        key={dot}
-                        className="h-1.5 w-1.5 rounded-full bg-fuchsia-300"
-                        animate={reduceMotion ? undefined : { y: [0, -4, 0], opacity: [0.45, 1, 0.45] }}
-                        transition={{ duration: 0.8, repeat: Infinity, delay: dot * 0.12 }}
+                        key={bar}
+                        className="w-0.5 rounded-full bg-gradient-to-t from-fuchsia-400 to-cyan-200"
+                        animate={
+                          reduceMotion
+                            ? { height: 8 }
+                            : { height: [5, 18 - bar * 2, 7] }
+                        }
+                        transition={{
+                          duration: 0.85,
+                          repeat: Infinity,
+                          delay: bar * 0.1,
+                          ease: "easeInOut",
+                        }}
                       />
                     ))}
                   </span>
-                  Mapping that to Liz’s portfolio…
+                  <span>
+                    <span className="block text-[0.55rem] font-bold tracking-[0.15em] text-fuchsia-300 uppercase">
+                      Reading the signal
+                    </span>
+                    <span className="mt-0.5 block text-[0.65rem]">
+                      Mapping that to Liz’s portfolio…
+                    </span>
+                  </span>
                 </div>
               )}
             </div>
 
-            <form onSubmit={handleSubmit} className="border-t border-white/10 p-3">
-              <div className="flex items-center gap-2 rounded-2xl border border-purple-300/15 bg-white/[0.04] p-1.5 transition focus-within:border-fuchsia-300/35 focus-within:bg-white/[0.06]">
-                <input
-                  ref={inputRef}
-                  value={input}
-                  onChange={(event) => setInput(event.target.value)}
-                  placeholder="Ask me anything about Liz…"
-                  maxLength={240}
-                  className="min-w-0 flex-1 bg-transparent px-2.5 py-2 text-sm text-white outline-none placeholder:text-purple-100/35"
-                  aria-label="Ask Liz AI a question"
-                />
-                {voiceSupported && (
+            <form onSubmit={handleSubmit} className="relative p-3 pt-2">
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-purple-300/20 to-transparent"
+              />
+              <div className="rounded-[1.2rem] bg-gradient-to-r from-purple-400/30 via-fuchsia-300/15 to-cyan-300/30 p-px shadow-[0_12px_35px_rgba(0,0,0,0.28)]">
+                <div className="flex items-center gap-1 rounded-[calc(1.2rem-1px)] bg-[rgba(17,11,26,0.96)] p-1.5">
+                  <span className="ml-2 flex h-6 w-6 shrink-0 items-center justify-center text-fuchsia-300/70">
+                    <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l1.7 5.3L19 10l-4.1 3.2L16 19l-4-2.5L8 19l1.1-5.8L5 10l5.3-1.7L12 3z" />
+                    </svg>
+                  </span>
+                  <input
+                    ref={inputRef}
+                    value={input}
+                    onChange={(event) => setInput(event.target.value)}
+                    placeholder="Ask anything about Liz…"
+                    maxLength={240}
+                    className="min-w-0 flex-1 bg-transparent px-1.5 py-2.5 text-sm text-white outline-none placeholder:text-purple-100/30"
+                    aria-label="Ask Liz AI a question"
+                  />
+                  {voiceSupported && (
+                    <button
+                      type="button"
+                      onClick={startVoiceInput}
+                      className={`relative rounded-xl p-2.5 transition ${
+                        isListening
+                          ? "bg-fuchsia-500/15 text-fuchsia-200"
+                          : "text-purple-200/45 hover:bg-white/5 hover:text-purple-100"
+                      }`}
+                      aria-label={isListening ? "Listening" : "Ask with your voice"}
+                      title="Ask with your voice"
+                    >
+                      {isListening && (
+                        <motion.span
+                          aria-hidden="true"
+                          className="absolute inset-1 rounded-lg border border-fuchsia-300/40"
+                          animate={reduceMotion ? undefined : { scale: [0.8, 1.15], opacity: [0.7, 0] }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                        />
+                      )}
+                      <svg aria-hidden="true" className="relative h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                        <rect x="9" y="3" width="6" height="12" rx="3" />
+                        <path strokeLinecap="round" d="M6 11a6 6 0 0012 0M12 17v4m-4 0h8" />
+                      </svg>
+                    </button>
+                  )}
                   <button
-                    type="button"
-                    onClick={startVoiceInput}
-                    className={`rounded-xl p-2.5 transition ${
-                      isListening
-                        ? "bg-fuchsia-500/20 text-fuchsia-200"
-                        : "text-purple-200/55 hover:bg-white/5 hover:text-purple-100"
-                    }`}
-                    aria-label={isListening ? "Listening" : "Ask with your voice"}
-                    title="Ask with your voice"
+                    type="submit"
+                    disabled={!input.trim() || isThinking}
+                    className="rounded-xl bg-gradient-to-br from-fuchsia-500 via-purple-500 to-indigo-500 p-2.5 text-white shadow-[0_8px_22px_rgba(126,34,206,0.35)] transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-25"
+                    aria-label="Send question"
                   >
                     <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <rect x="9" y="3" width="6" height="12" rx="3" />
-                      <path strokeLinecap="round" d="M6 11a6 6 0 0012 0M12 17v4m-4 0h8" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
                     </svg>
                   </button>
-                )}
-                <button
-                  type="submit"
-                  disabled={!input.trim() || isThinking}
-                  className="rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-500 p-2.5 text-white shadow-lg shadow-purple-950/30 transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-35"
-                  aria-label="Send question"
-                >
-                  <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-                  </svg>
-                </button>
+                </div>
               </div>
             </form>
           </motion.section>
@@ -533,16 +715,21 @@ export default function LizAI() {
         }`}
         aria-label={isOpen ? "Close Liz AI" : "Open Liz AI"}
         aria-expanded={isOpen}
+        aria-controls="liz-ai-panel"
       >
         <motion.span
           aria-hidden="true"
-          className="absolute -inset-1.5 rounded-full border border-fuchsia-300/25"
-          animate={
-            reduceMotion
-              ? undefined
-              : { scale: [0.98, 1.05, 0.98], opacity: [0.18, 0.42, 0.18] }
-          }
-          transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -inset-2 rounded-full bg-[conic-gradient(from_90deg,transparent_0deg,rgba(232,121,249,0.7)_48deg,transparent_105deg,rgba(103,232,249,0.55)_185deg,transparent_245deg)] opacity-55"
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+        />
+        <span
+          aria-hidden="true"
+          className="absolute -inset-[0.42rem] rounded-full bg-[#0a0a0a]"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute -inset-[0.34rem] rounded-full border border-purple-300/15"
         />
         <span className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-[#100918]">
           <AnimatePresence mode="wait">
@@ -576,13 +763,24 @@ export default function LizAI() {
                   className="scale-[1.16] object-cover object-top transition-transform duration-300 group-hover:scale-[1.2]"
                   sizes="64px"
                 />
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute -top-4 -bottom-4 -left-8 w-5 rotate-12 bg-gradient-to-r from-transparent via-white/25 to-transparent blur-sm"
+                  animate={reduceMotion ? undefined : { x: [0, 120] }}
+                  transition={{
+                    duration: 1.4,
+                    repeat: Infinity,
+                    repeatDelay: 4.5,
+                    ease: "easeInOut",
+                  }}
+                />
               </motion.span>
             )}
           </AnimatePresence>
         </span>
         {!isOpen && (
-          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full border border-fuchsia-200/25 bg-[#100918]/95 px-2 py-0.5 text-[0.48rem] font-black tracking-[0.14em] text-fuchsia-100 shadow-lg backdrop-blur-sm">
-            AI
+          <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-fuchsia-200/25 bg-[#100918]/95 px-2 py-0.5 text-[0.46rem] font-black tracking-[0.13em] text-fuchsia-100 shadow-[0_5px_14px_rgba(0,0,0,0.45)] backdrop-blur-sm">
+            LIZ AI
           </span>
         )}
         <span className="pointer-events-none absolute top-1/2 right-[calc(100%+0.75rem)] hidden -translate-y-1/2 whitespace-nowrap rounded-full border border-purple-300/15 bg-[#100918]/95 px-3 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-purple-100 uppercase opacity-0 shadow-xl backdrop-blur-xl transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 sm:block">
