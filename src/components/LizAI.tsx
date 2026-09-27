@@ -517,9 +517,6 @@ export default function LizAI() {
                   </svg>
                 </button>
               </div>
-              <p className="mt-2 text-center text-[0.58rem] tracking-wide text-purple-100/30">
-                Portfolio chat runs locally · voice uses your browser service
-              </p>
             </form>
           </motion.section>
         )}
@@ -531,7 +528,7 @@ export default function LizAI() {
         animate={isOpen ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
         whileHover={reduceMotion ? undefined : { scale: 1.05, y: -2 }}
         whileTap={reduceMotion ? undefined : { scale: 0.96 }}
-        className={`group fixed right-4 bottom-4 z-[81] h-[4.75rem] w-[4.75rem] rounded-full bg-gradient-to-br from-fuchsia-300 via-purple-500 to-cyan-300 p-[2px] shadow-[0_18px_55px_rgba(126,34,206,0.45)] sm:right-6 sm:bottom-6 ${
+        className={`group fixed right-4 bottom-4 z-[81] h-16 w-16 rounded-full bg-gradient-to-br from-fuchsia-300 via-purple-500 to-cyan-300 p-px shadow-[0_14px_38px_rgba(126,34,206,0.32)] sm:right-6 sm:bottom-6 ${
           isOpen ? "pointer-events-none" : ""
         }`}
         aria-label={isOpen ? "Close Liz AI" : "Open Liz AI"}
@@ -543,9 +540,9 @@ export default function LizAI() {
           animate={
             reduceMotion
               ? undefined
-              : { scale: [0.96, 1.08, 0.96], opacity: [0.25, 0.65, 0.25] }
+              : { scale: [0.98, 1.05, 0.98], opacity: [0.18, 0.42, 0.18] }
           }
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
         />
         <span className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-[#100918]">
           <AnimatePresence mode="wait">
@@ -576,12 +573,9 @@ export default function LizAI() {
                   alt=""
                   fill
                   priority
-                  className="scale-110 object-cover object-top"
-                  sizes="76px"
+                  className="scale-[1.16] object-cover object-top transition-transform duration-300 group-hover:scale-[1.2]"
+                  sizes="64px"
                 />
-                <span className="absolute right-0.5 bottom-0.5 rounded-full border border-fuchsia-200/30 bg-[#100918]/95 px-2 py-1 text-[0.52rem] font-black tracking-[0.1em] text-fuchsia-200">
-                  AI
-                </span>
               </motion.span>
             )}
           </AnimatePresence>
