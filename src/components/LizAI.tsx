@@ -278,16 +278,25 @@ export default function LizAI() {
         {teaser && !isOpen && (
           <motion.button
             type="button"
-            initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 5, scale: 0.98 }}
+            initial={reduceMotion ? false : { opacity: 0, x: 12, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 8, scale: 0.98 }}
             onClick={openAssistant}
-            className="fixed right-4 bottom-24 z-[79] max-w-[17rem] rounded-2xl border border-purple-300/20 bg-[rgba(17,10,27,0.92)] px-4 py-3 text-left text-sm leading-relaxed text-purple-50 shadow-[0_18px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:right-6"
+            className="group fixed right-[6.1rem] bottom-[1.6rem] z-[79] w-[min(16rem,calc(100vw-7.35rem))] rounded-[1.35rem] bg-gradient-to-br from-fuchsia-300/55 via-purple-500/25 to-cyan-300/45 p-px text-left shadow-[0_18px_60px_rgba(0,0,0,0.42)] sm:right-[7rem] sm:bottom-[1.85rem]"
           >
-            <span className="mb-1 block text-[0.6rem] font-bold tracking-[0.18em] text-fuchsia-300 uppercase">
-              Liz AI noticed
+            <span className="relative block rounded-[calc(1.35rem-1px)] bg-[rgba(15,9,23,0.94)] px-4 py-3 backdrop-blur-xl">
+              <span className="mb-1.5 flex items-center gap-2 text-[0.58rem] font-bold tracking-[0.18em] text-fuchsia-300 uppercase">
+                <span className="h-px w-5 bg-gradient-to-r from-fuchsia-300 to-transparent" />
+                A quick detour?
+              </span>
+              <span className="block text-sm leading-relaxed font-medium text-purple-50">
+                {teaser}
+              </span>
+              <span className="mt-2 inline-flex items-center gap-1 text-[0.62rem] font-bold tracking-[0.14em] text-cyan-200 uppercase transition group-hover:gap-2">
+                Ask me <span aria-hidden="true">→</span>
+              </span>
             </span>
-            {teaser}
+            <span className="absolute top-1/2 -right-2 h-4 w-4 -translate-y-1/2 rotate-45 border-t border-r border-cyan-300/30 bg-[rgba(15,9,23,0.94)]" />
           </motion.button>
         )}
       </AnimatePresence>
