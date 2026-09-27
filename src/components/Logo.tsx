@@ -9,7 +9,7 @@ export default function Logo() {
     <span
       role="img"
       aria-label="Elizabeth"
-      className="inline-flex items-baseline font-display text-2xl font-semibold tracking-tight text-white select-none"
+      className="inline-flex items-baseline whitespace-nowrap font-display text-2xl font-semibold tracking-tight text-white select-none"
     >
       E
       <span

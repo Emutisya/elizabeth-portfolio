@@ -174,12 +174,49 @@ export default function LizAI() {
 
   useEffect(() => {
     if (!isOpen) return;
-    inputRef.current?.focus();
+
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
       behavior: reduceMotion ? "auto" : "smooth",
     });
   }, [isOpen, isThinking, messages, reduceMotion]);
+
+  useEffect(() => {
+    const panel = panelRef.current;
+    const viewport = window.visualViewport;
+    if (!isOpen || !panel) return;
+    if (!viewport) return;
+    const assistantPanel: HTMLElement = panel;
+    const visualViewport: VisualViewport = viewport;
+
+    function syncPanelToVisualViewport() {
+      const keyboardOffset = Math.max(
+        0,
+        window.innerHeight -
+          visualViewport.height -
+          visualViewport.offsetTop,
+      );
+      assistantPanel.style.setProperty(
+        "--liz-ai-viewport-height",
+        `${Math.round(visualViewport.height)}px`,
+      );
+      assistantPanel.style.setProperty(
+        "--liz-ai-keyboard-offset",
+        `${Math.round(keyboardOffset)}px`,
+      );
+    }
+
+    syncPanelToVisualViewport();
+    visualViewport.addEventListener("resize", syncPanelToVisualViewport);
+    visualViewport.addEventListener("scroll", syncPanelToVisualViewport);
+    window.addEventListener("resize", syncPanelToVisualViewport);
+
+    return () => {
+      visualViewport.removeEventListener("resize", syncPanelToVisualViewport);
+      visualViewport.removeEventListener("scroll", syncPanelToVisualViewport);
+      window.removeEventListener("resize", syncPanelToVisualViewport);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -308,7 +345,6 @@ export default function LizAI() {
     setIsThinking(false);
     setMessages([welcomeMessage]);
     window.localStorage.removeItem(STORAGE_KEY);
-    inputRef.current?.focus();
   }
 
   function startVoiceInput() {
@@ -376,7 +412,7 @@ export default function LizAI() {
             onKeyDown={(event) => {
               if (event.key === "Escape") setIsOpen(false);
             }}
-            className="fixed right-3 bottom-3 z-[80] flex h-[min(39rem,calc(100dvh-1.5rem))] w-[min(24rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-[1.8rem] border border-white/[0.11] bg-[rgba(8,5,14,0.965)] shadow-[0_30px_100px_rgba(0,0,0,0.72),0_0_80px_rgba(126,34,206,0.16)] backdrop-blur-2xl sm:right-6 sm:bottom-6"
+            className="fixed right-3 bottom-[calc(0.75rem+var(--liz-ai-keyboard-offset,0px))] z-[80] flex h-[min(39rem,calc(var(--liz-ai-viewport-height,100dvh)-1.5rem))] w-[min(24rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-[1.8rem] border border-white/[0.11] bg-[rgba(8,5,14,0.965)] shadow-[0_30px_100px_rgba(0,0,0,0.72),0_0_80px_rgba(126,34,206,0.16)] backdrop-blur-2xl sm:right-6 sm:bottom-[calc(1.5rem+var(--liz-ai-keyboard-offset,0px))]"
           >
             <div
               aria-hidden="true"
@@ -658,6 +694,7 @@ export default function LizAI() {
                     onChange={(event) => setInput(event.target.value)}
                     placeholder="Ask anything about Liz…"
                     maxLength={240}
+                    enterKeyHint="send"
                     className="min-w-0 flex-1 bg-transparent px-1.5 py-2.5 text-sm text-white outline-none placeholder:text-purple-100/30"
                     aria-label="Ask Liz AI a question"
                   />
@@ -779,7 +816,7 @@ export default function LizAI() {
           </AnimatePresence>
         </span>
         {!isOpen && (
-          <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-fuchsia-200/25 bg-[#100918]/95 px-2 py-0.5 text-[0.46rem] font-black tracking-[0.13em] text-fuchsia-100 shadow-[0_5px_14px_rgba(0,0,0,0.45)] backdrop-blur-sm">
+          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 -rotate-2 whitespace-nowrap border border-purple-500/45 bg-[#100918]/95 px-2.5 py-0.5 text-[0.48rem] font-black tracking-[0.16em] text-purple-200 uppercase shadow-[3px_3px_0_rgba(168,85,247,0.22)]">
             LIZ AI
           </span>
         )}

@@ -29,15 +29,17 @@ export default function Navigation() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "glass shadow-lg shadow-black/5" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/#home" className="tracking-tight">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-3 sm:px-6 sm:pt-[calc(1rem+env(safe-area-inset-top))] sm:pb-4">
+        <Link
+          href="/#home"
+          className="shrink-0 tracking-tight"
+          aria-label="Elizabeth home"
+        >
           <Logo />
         </Link>
 
@@ -103,6 +105,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }
