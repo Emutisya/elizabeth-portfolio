@@ -340,12 +340,7 @@ export default function LizAI() {
                 />
               </div>
               <div className="relative min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h2 className="font-display text-lg font-bold">Liz AI</h2>
-                  <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[0.55rem] font-bold tracking-[0.14em] text-emerald-300 uppercase">
-                    Local
-                  </span>
-                </div>
+                <h2 className="font-display text-lg font-bold">Liz AI</h2>
                 <p className="truncate text-xs text-purple-200/65">
                   Your guide to Liz’s work and world
                 </p>
