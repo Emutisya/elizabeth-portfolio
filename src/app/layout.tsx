@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import LizAI from "@/components/LizAI";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
@@ -196,6 +197,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <LizAI />
         </ThemeProvider>
       </body>
     </html>

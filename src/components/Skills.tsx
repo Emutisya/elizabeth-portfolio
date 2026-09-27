@@ -53,7 +53,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="pt-10 pb-10 md:pt-14 md:pb-14">
+    <section id="skills" className="pt-10 pb-10 md:pt-14 md:pb-14">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           ref={ref}
