@@ -22,18 +22,12 @@ const timeline = [
   },
   {
     year: "2022",
-    title: "Microsoft PM Intern",
-    desc: "Customer research on Microsoft Authenticator",
-  },
-  {
-    year: "2023",
-    title: "Product Manager at Microsoft",
-    desc: "Led Graph Onboarding & OData initiatives",
-  },
-  {
-    year: "2024",
-    title: "PM – Permissions & Governance",
-    desc: "Leading Microsoft Graph governance and platform initiatives",
+    title: "Microsoft Product Manager",
+    desc: [
+      "Microsoft Authenticator",
+      "Graph Onboarding & OData initiatives",
+      "Microsoft Entra governance and platform initiatives",
+    ],
   },
 ];
 
@@ -170,7 +164,17 @@ export default function About() {
                       {item.year}
                     </span>
                     <h3 className="mt-1 text-lg font-bold">{item.title}</h3>
-                    <p className="text-sm text-[rgb(var(--muted))]">{item.desc}</p>
+                    {Array.isArray(item.desc) ? (
+                      <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-[rgb(var(--muted))]">
+                        {item.desc.map((initiative) => (
+                          <li key={initiative}>{initiative}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm text-[rgb(var(--muted))]">
+                        {item.desc}
+                      </p>
+                    )}
                   </motion.div>
                 );
               })}
