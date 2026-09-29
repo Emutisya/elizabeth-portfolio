@@ -3,50 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionBadge from "@/components/SectionBadge";
-
-const skillCategories = [
-  {
-    title: "Product & Strategy",
-    skills: [
-      "Product Strategy",
-      "Roadmapping & OKRs",
-      "Data-Informed Decisions",
-      "A/B Testing",
-      "Go-to-Market Strategy",
-    ],
-  },
-  {
-    title: "Program & Operations",
-    skills: [
-      "Program Management",
-      "Stakeholder Management",
-      "Change Management",
-      "Governance & Compliance",
-      "Risk Management",
-    ],
-  },
-  {
-    title: "Technical",
-    skills: [
-      "Microsoft Graph",
-      "REST APIs",
-      "Azure DevOps",
-      "GitHub",
-      "CI/CD Pipelines",
-      "Telemetry & Analytics",
-    ],
-  },
-  {
-    title: "Design & Tools",
-    skills: [
-      "Figma",
-      "UX Research",
-      "User Story Mapping",
-      "Agile/Scrum",
-      "Process Improvement",
-    ],
-  },
-];
+import { siteContent } from "@/lib/site-content";
 
 export default function Skills() {
   const ref = useRef(null);
@@ -73,7 +30,7 @@ export default function Skills() {
         </motion.div>
 
         <div className="mx-auto grid max-w-6xl gap-7 pt-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          {skillCategories.map((category, index) => (
+          {siteContent.skills.map((category, index) => (
               <motion.article
                 key={category.title}
                 initial={{ opacity: 0, y: 30 }}

@@ -3,33 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionBadge from "@/components/SectionBadge";
-
-const timeline = [
-  {
-    year: "2018",
-    title: "Started at Strathmore University",
-    desc: "BSc Informatics & Computer Science",
-  },
-  {
-    year: "2021",
-    title: "Software Developer",
-    desc: "Built web solutions at Uwezo College & Foundation",
-  },
-  {
-    year: "2022",
-    title: "Spotify Software Engineer Intern",
-    desc: "Worked on Canvas and Analytics in Cairo, Egypt",
-  },
-  {
-    year: "2022",
-    title: "Microsoft Product Manager",
-    desc: [
-      "Microsoft Authenticator",
-      "Graph Onboarding & OData initiatives",
-      "Microsoft Entra governance and platform initiatives",
-    ],
-  },
-];
+import { siteContent } from "@/lib/site-content";
 
 export default function About() {
   const ref = useRef(null);
@@ -118,7 +92,7 @@ export default function About() {
             </div>
 
             <div className="space-y-8">
-              {timeline.map((item, index) => {
+              {siteContent.timeline.map((item, index) => {
                 const isFirst = index === 0;
                 return (
                   <motion.div
@@ -164,15 +138,15 @@ export default function About() {
                       {item.year}
                     </span>
                     <h3 className="mt-1 text-lg font-bold">{item.title}</h3>
-                    {Array.isArray(item.desc) ? (
+                    {item.details.length > 1 ? (
                       <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-[rgb(var(--muted))]">
-                        {item.desc.map((initiative) => (
-                          <li key={initiative}>{initiative}</li>
+                        {item.details.map((detail) => (
+                          <li key={detail}>{detail}</li>
                         ))}
                       </ul>
                     ) : (
                       <p className="text-sm text-[rgb(var(--muted))]">
-                        {item.desc}
+                        {item.details[0]}
                       </p>
                     )}
                   </motion.div>

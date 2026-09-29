@@ -369,6 +369,8 @@ export default function LizAI() {
     recognition.start();
   }
 
+  if (pathname.startsWith("/studio")) return null;
+
   return (
     <>
       <AnimatePresence>

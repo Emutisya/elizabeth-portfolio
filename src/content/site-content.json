@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "timeline": [
+    {
+      "year": "2018",
+      "title": "Started at Strathmore University",
+      "details": [
+        "BSc Informatics & Computer Science"
+      ]
+    },
+    {
+      "year": "2021",
+      "title": "Software Developer",
+      "details": [
+        "Built web solutions at Uwezo College & Foundation"
+      ]
+    },
+    {
+      "year": "2022",
+      "title": "Spotify Software Engineer Intern",
+      "details": [
+        "Worked on Canvas and Analytics in Cairo, Egypt"
+      ]
+    },
+    {
+      "year": "2022",
+      "title": "Microsoft Product Manager",
+      "details": [
+        "Microsoft Authenticator",
+        "Graph Onboarding & OData initiatives",
+        "Microsoft Entra governance and platform initiatives"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "quote": "You show strong PM ownership by stepping into complex and high-impact areas, making sense of ambiguity, and turning real customer pain points into clear priorities.",
+      "name": "Henry Mbugua",
+      "title": "Knowledge Engineer / Content Developer",
+      "company": "Microsoft",
+      "theme": "Product ownership",
+      "gradient": "from-purple-500 to-indigo-500"
+    },
+    {
+      "quote": "Feature depth and accountability \u2014 You know your space cold and own outcomes, not just tasks. Quality of written artifacts \u2014 the guidance was thorough, clear, and ready to operationalize.",
+      "name": "Dhivya Ganapathy",
+      "title": "Technical Product Manager",
+      "company": "Microsoft",
+      "theme": "Feature leadership",
+      "gradient": "from-pink-500 to-rose-500"
+    },
+    {
+      "quote": "You genuinely bring a good mix of strategic thinking, clear communication, and hands-on execution. It's been great teaming up with you!",
+      "name": "Manav Patel",
+      "title": "Software Engineer",
+      "company": "Microsoft",
+      "theme": "Strategic leadership",
+      "gradient": "from-amber-500 to-orange-500"
+    },
+    {
+      "quote": "Your technical knowledge and open-mindedness when receiving feedback are truly exceptional. These qualities reinforce trust and make collaboration a breeze.",
+      "name": "David Wambugu",
+      "title": "Senior Software Engineer",
+      "company": "Microsoft",
+      "theme": "Technical collaboration",
+      "gradient": "from-emerald-500 to-teal-500"
+    },
+    {
+      "quote": "Your reliability. I can count on you to follow through on whatever needs to be done and can guarantee that things won't fall through the cracks. Kudos!!",
+      "name": "James Ndegwa Maringa",
+      "title": "Senior Software Engineer",
+      "company": "Microsoft",
+      "theme": "Reliability",
+      "gradient": "from-indigo-500 to-purple-500"
+    },
+    {
+      "quote": "Your attention to detail and thoroughness in analyzing questions related to Graph API review and permissions have not gone unnoticed. Your ability to dive deep into the details and ensure everything is well-defined has been particularly impressive.",
+      "name": "Mahender Bhonagiri",
+      "title": "Principal Software Engineering Manager",
+      "company": "Microsoft",
+      "theme": "Depth and quality",
+      "gradient": "from-rose-500 to-pink-500"
+    },
+    {
+      "quote": "You documented your outcomes, brought forth great ideas, asked for perspectives from different members of the team, and went back to refine your ideas based on feedback you received.",
+      "name": "Tom Ogoma",
+      "title": "Senior Engineering Manager",
+      "company": "Microsoft",
+      "theme": "Collaborative thinking",
+      "gradient": "from-orange-500 to-amber-500"
+    },
+    {
+      "quote": "Liz is a very motivated and quick learner. Her deep thinking and genuine desire to understand our customers' point of view and needs was very evident.",
+      "name": "Pramila Padmanabhan",
+      "title": "Principal Group PM Manager",
+      "company": "Microsoft",
+      "theme": "Customer empathy",
+      "gradient": "from-teal-500 to-emerald-500"
+    }
+  ],
+  "featuredWork": [
+    {
+      "id": 1,
+      "title": "Building Microsoft's Unified Permissions & PreAuthorization Experience",
+      "problem": "Fragmented onboarding experience with multiple approval paths and poor visibility across Microsoft's platform.",
+      "role": "Product Manager",
+      "actions": [
+        "Mapped end-to-end workflows across engineering, operations, and stakeholder teams",
+        "Aligned multiple stakeholder groups around a unified self-service strategy",
+        "Defined self-service platform strategy and led product development",
+        "Authored PRDs and user stories, prioritizing the backlog against customer impact",
+        "Partnered with UX to design and validate the onboarding experience end-to-end",
+        "Instrumented telemetry and defined success metrics to measure adoption"
+      ],
+      "impact": [
+        "60% reduction in onboarding latency",
+        "92% SLA compliance",
+        "25 support tickets eliminated per week",
+        "100% self-service coverage for onboarding approvals",
+        "90% reduction in manual approval steps"
+      ],
+      "tags": [
+        "Platform",
+        "Governance",
+        "Self-Service"
+      ],
+      "gradient": "from-purple-500 to-indigo-500"
+    },
+    {
+      "id": 2,
+      "title": "Modernizing Microsoft Graph Permissions Governance",
+      "problem": "Permissions lacked complete metadata and governance visibility, creating compliance gaps across 1,200+ permissions.",
+      "role": "Product Manager",
+      "actions": [
+        "Led cross-functional modernization coordinating multiple engineering teams",
+        "Integrated RBAC, RSC, and token-based authorization models",
+        "Introduced scalable governance practices across the ecosystem",
+        "Defined the product roadmap and drove quarterly OKRs to closure",
+        "Established a metadata schema and review process for new permissions",
+        "Drove stakeholder alignment across security, compliance, and platform teams"
+      ],
+      "impact": [
+        "100% metadata coverage across 1,200+ permissions",
+        "1,200+ permissions brought under unified governance",
+        "100% governance visibility, closing prior compliance gaps",
+        "100% of new permissions onboarded via a standardized schema",
+        "Zero compliance gaps across the permissions ecosystem"
+      ],
+      "tags": [
+        "API",
+        "Governance",
+        "Enterprise"
+      ],
+      "gradient": "from-pink-500 to-rose-500"
+    },
+    {
+      "id": 3,
+      "title": "Scaling API Review Adoption Across Microsoft",
+      "problem": "Large engineering organizations struggled to adopt a new API review process, risking fragmentation.",
+      "role": "Product Manager & Program Manager",
+      "actions": [
+        "Program-managed migration of 158 workloads to new review process",
+        "Led weekly governance reviews and dependency tracking",
+        "Coordinated stakeholders and tracked execution to completion",
+        "Built the rollout plan, risk register, and communication cadence",
+        "Created self-serve documentation and onboarding to drive tool adoption",
+        "Defined KPIs and reported progress to leadership through dashboards"
+      ],
+      "impact": [
+        "100% migration completion within committed timelines",
+        "50% reduction in manual operational effort",
+        "40% increase in tool adoption",
+        "158 workloads onboarded to the new review process",
+        "100% of teams adopted the self-serve review model"
+      ],
+      "tags": [
+        "Program Management",
+        "Migration",
+        "Scale"
+      ],
+      "gradient": "from-amber-500 to-orange-500"
+    }
+  ],
+  "skills": [
+    {
+      "title": "Product & Strategy",
+      "skills": [
+        "Product Strategy",
+        "Roadmapping & OKRs",
+        "Data-Informed Decisions",
+        "A/B Testing",
+        "Go-to-Market Strategy"
+      ]
+    },
+    {
+      "title": "Program & Operations",
+      "skills": [
+        "Program Management",
+        "Stakeholder Management",
+        "Change Management",
+        "Governance & Compliance",
+        "Risk Management"
+      ]
+    },
+    {
+      "title": "Technical",
+      "skills": [
+        "Microsoft Graph",
+        "REST APIs",
+        "Azure DevOps",
+        "GitHub",
+        "CI/CD Pipelines",
+        "Telemetry & Analytics"
+      ]
+    },
+    {
+      "title": "Design & Tools",
+      "skills": [
+        "Figma",
+        "UX Research",
+        "User Story Mapping",
+        "Agile/Scrum",
+        "Process Improvement"
+      ]
+    }
+  ]
+}

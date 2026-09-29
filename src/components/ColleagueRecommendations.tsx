@@ -3,73 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionBadge from "@/components/SectionBadge";
-
-const perspectives = [
-  {
-    quote:
-      "You show strong PM ownership by stepping into complex and high-impact areas, making sense of ambiguity, and turning real customer pain points into clear priorities.",
-    name: "Henry Mbugua",
-    title: "Knowledge Engineer / Content Developer",
-    theme: "Product ownership",
-    gradient: "from-purple-500 to-indigo-500",
-  },
-  {
-    quote:
-      "Feature depth and accountability — You know your space cold and own outcomes, not just tasks. Quality of written artifacts — the guidance was thorough, clear, and ready to operationalize.",
-    name: "Dhivya Ganapathy",
-    title: "Technical Product Manager",
-    theme: "Feature leadership",
-    gradient: "from-pink-500 to-rose-500",
-  },
-  {
-    quote:
-      "You genuinely bring a good mix of strategic thinking, clear communication, and hands-on execution. It's been great teaming up with you!",
-    name: "Manav Patel",
-    title: "Software Engineer",
-    theme: "Strategic leadership",
-    gradient: "from-amber-500 to-orange-500",
-  },
-  {
-    quote:
-      "Your technical knowledge and open-mindedness when receiving feedback are truly exceptional. These qualities reinforce trust and make collaboration a breeze.",
-    name: "David Wambugu",
-    title: "Senior Software Engineer",
-    theme: "Technical collaboration",
-    gradient: "from-emerald-500 to-teal-500",
-  },
-  {
-    quote:
-      "Your reliability. I can count on you to follow through on whatever needs to be done and can guarantee that things won't fall through the cracks. Kudos!!",
-    name: "James Ndegwa Maringa",
-    title: "Senior Software Engineer",
-    theme: "Reliability",
-    gradient: "from-indigo-500 to-purple-500",
-  },
-  {
-    quote:
-      "Your attention to detail and thoroughness in analyzing questions related to Graph API review and permissions have not gone unnoticed. Your ability to dive deep into the details and ensure everything is well-defined has been particularly impressive.",
-    name: "Mahender Bhonagiri",
-    title: "Principal Software Engineering Manager",
-    theme: "Depth and quality",
-    gradient: "from-rose-500 to-pink-500",
-  },
-  {
-    quote:
-      "You documented your outcomes, brought forth great ideas, asked for perspectives from different members of the team, and went back to refine your ideas based on feedback you received.",
-    name: "Tom Ogoma",
-    title: "Senior Engineering Manager",
-    theme: "Collaborative thinking",
-    gradient: "from-orange-500 to-amber-500",
-  },
-  {
-    quote:
-      "Liz is a very motivated and quick learner. Her deep thinking and genuine desire to understand our customers' point of view and needs was very evident.",
-    name: "Pramila Padmanabhan",
-    title: "Principal Group PM Manager",
-    theme: "Customer empathy",
-    gradient: "from-teal-500 to-emerald-500",
-  },
-];
+import { siteContent } from "@/lib/site-content";
 
 export default function ColleagueRecommendations() {
   const ref = useRef(null);
@@ -104,7 +38,7 @@ export default function ColleagueRecommendations() {
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {perspectives.map((perspective, index) => (
+          {siteContent.recommendations.map((perspective, index) => (
             <motion.figure
               key={perspective.name}
               initial={{ opacity: 0, y: 32 }}
@@ -140,7 +74,7 @@ export default function ColleagueRecommendations() {
                   {perspective.title}
                 </span>
                 <span className="block text-sm text-[rgb(var(--muted))]">
-                  Microsoft
+                  {perspective.company}
                 </span>
               </figcaption>
             </motion.figure>

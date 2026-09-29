@@ -3,81 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionBadge from "@/components/SectionBadge";
-
-const caseStudies = [
-  {
-    id: 1,
-    title: "Building Microsoft's Unified Permissions & PreAuthorization Experience",
-    problem:
-      "Fragmented onboarding experience with multiple approval paths and poor visibility across Microsoft's platform.",
-    role: "Product Manager",
-    actions: [
-      "Mapped end-to-end workflows across engineering, operations, and stakeholder teams",
-      "Aligned multiple stakeholder groups around a unified self-service strategy",
-      "Defined self-service platform strategy and led product development",
-      "Authored PRDs and user stories, prioritizing the backlog against customer impact",
-      "Partnered with UX to design and validate the onboarding experience end-to-end",
-      "Instrumented telemetry and defined success metrics to measure adoption",
-    ],
-    impact: [
-      "60% reduction in onboarding latency",
-      "92% SLA compliance",
-      "25 support tickets eliminated per week",
-      "100% self-service coverage for onboarding approvals",
-      "90% reduction in manual approval steps",
-    ],
-    tags: ["Platform", "Governance", "Self-Service"],
-    gradient: "from-purple-500 to-indigo-500",
-  },
-  {
-    id: 2,
-    title: "Modernizing Microsoft Graph Permissions Governance",
-    problem:
-      "Permissions lacked complete metadata and governance visibility, creating compliance gaps across 1,200+ permissions.",
-    role: "Product Manager",
-    actions: [
-      "Led cross-functional modernization coordinating multiple engineering teams",
-      "Integrated RBAC, RSC, and token-based authorization models",
-      "Introduced scalable governance practices across the ecosystem",
-      "Defined the product roadmap and drove quarterly OKRs to closure",
-      "Established a metadata schema and review process for new permissions",
-      "Drove stakeholder alignment across security, compliance, and platform teams",
-    ],
-    impact: [
-      "100% metadata coverage across 1,200+ permissions",
-      "1,200+ permissions brought under unified governance",
-      "100% governance visibility, closing prior compliance gaps",
-      "100% of new permissions onboarded via a standardized schema",
-      "Zero compliance gaps across the permissions ecosystem",
-    ],
-    tags: ["API", "Governance", "Enterprise"],
-    gradient: "from-pink-500 to-rose-500",
-  },
-  {
-    id: 3,
-    title: "Scaling API Review Adoption Across Microsoft",
-    problem:
-      "Large engineering organizations struggled to adopt a new API review process, risking fragmentation.",
-    role: "Product Manager & Program Manager",
-    actions: [
-      "Program-managed migration of 158 workloads to new review process",
-      "Led weekly governance reviews and dependency tracking",
-      "Coordinated stakeholders and tracked execution to completion",
-      "Built the rollout plan, risk register, and communication cadence",
-      "Created self-serve documentation and onboarding to drive tool adoption",
-      "Defined KPIs and reported progress to leadership through dashboards",
-    ],
-    impact: [
-      "100% migration completion within committed timelines",
-      "50% reduction in manual operational effort",
-      "40% increase in tool adoption",
-      "158 workloads onboarded to the new review process",
-      "100% of teams adopted the self-serve review model",
-    ],
-    tags: ["Program Management", "Migration", "Scale"],
-    gradient: "from-amber-500 to-orange-500",
-  },
-];
+import { siteContent } from "@/lib/site-content";
 
 export default function FeaturedWork() {
   const ref = useRef(null);
@@ -107,7 +33,7 @@ export default function FeaturedWork() {
         </motion.div>
 
         <div className="space-y-12">
-          {caseStudies.map((study, index) => (
+          {siteContent.featuredWork.map((study, index) => (
             <motion.div
               key={study.id}
               initial={{ opacity: 0, y: 40 }}
