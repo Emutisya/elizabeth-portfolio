@@ -29,6 +29,27 @@ export const metadata: Metadata = {
   creator: "Elizabeth Waeni Mutisya",
   publisher: "Elizabeth Waeni Mutisya",
   category: "Technology",
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
+        url: "/favicon.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
   keywords: [
     "Elizabeth Waeni Mutisya",
     "Elizabeth Mutisya",
@@ -181,7 +202,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
